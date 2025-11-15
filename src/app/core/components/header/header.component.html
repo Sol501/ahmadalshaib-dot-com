@@ -1,0 +1,19 @@
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-header__brand" href="/" aria-label="Ahmad Alshaib home">
+      <span>Ahmad Alshaib</span>
+    </a>
+    <nav class="site-header__nav" aria-label="Primary">
+      @for (link of links(); track link.id) {
+        <a
+          class="site-header__nav-link"
+          [appScrollAnchor]="link.targetId"
+          [attr.href]="'#' + link.targetId"
+        >
+          {{ link.label }}
+        </a>
+      }
+    </nav>
+    <a class="site-header__cta" appScrollAnchor="contact" href="#contact">Let's talk</a>
+  </div>
+</header>

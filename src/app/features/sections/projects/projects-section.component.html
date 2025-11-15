@@ -1,0 +1,36 @@
+<app-section-heading
+  title="Projects"
+  eyebrow="Selected work"
+  description="Project cards placeholder"
+/>
+<div class="projects-grid">
+  @for (project of projects(); track project.id) {
+    <article class="project-card">
+      <header>
+        <p class="project-card__eyebrow">Featured</p>
+        <h3 class="project-card__title">{{ project.title }}</h3>
+        <p class="project-card__description">{{ project.description }}</p>
+      </header>
+      <p class="project-card__stack">{{ project.techStack | listJoin }}</p>
+      @if (project.links?.length) {
+        <div class="project-card__links">
+          @for (link of project.links; track link.label) {
+            <a class="project-card__link" [attr.href]="link.url" target="_blank" rel="noreferrer">
+              {{ link.label }}
+            </a>
+          }
+        </div>
+      }
+      @if (project.highlights?.length) {
+        <ul class="project-card__highlights">
+          @for (item of project.highlights; track item) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      }
+    </article>
+  }
+  @empty {
+    <p class="section-placeholder">Projects will be added soon.</p>
+  }
+</div>

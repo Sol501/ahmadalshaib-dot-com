@@ -1,0 +1,27 @@
+<app-section-heading
+  title="Experience"
+  eyebrow="Career"
+  description="Timeline placeholder"
+/>
+<div class="experience-list">
+  @for (experience of experiences(); track experience.id) {
+    <article class="experience-card">
+      <header>
+        <p class="experience-card__role">{{ experience.role }}</p>
+        <p class="experience-card__company">{{ experience.company }}</p>
+        <p class="experience-card__dates">{{ experience.startDate }} — {{ experience.endDate ?? 'Present' }}</p>
+      </header>
+      <ul>
+        @for (achievement of experience.achievements; track achievement) {
+          <li>{{ achievement }}</li>
+        }
+      </ul>
+      @if (experience.techFocus?.length) {
+        <p class="experience-card__tech">{{ experience.techFocus | listJoin }}</p>
+      }
+    </article>
+  }
+  @empty {
+    <p class="section-placeholder">Experience entries will be populated soon.</p>
+  }
+</div>

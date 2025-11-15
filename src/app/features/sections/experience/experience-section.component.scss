@@ -1,0 +1,35 @@
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.experience-card {
+  padding: 1.25rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background-color: #fff;
+}
+
+.experience-card__role {
+  margin: 0;
+  font-weight: 600;
+}
+
+.experience-card__company,
+.experience-card__dates {
+  margin: 0.25rem 0 0;
+  color: var(--color-text-muted, #475569);
+}
+
+.experience-card ul {
+  margin: 1rem 0 0;
+  padding-inline-start: 1.5rem;
+  color: var(--color-text-muted, #475569);
+}
+
+.experience-card__tech {
+  margin: 1rem 0 0;
+  font-size: 0.9rem;
+  color: var(--color-text-muted, #475569);
+}

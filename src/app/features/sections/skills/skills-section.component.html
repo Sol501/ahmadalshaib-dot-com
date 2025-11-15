@@ -1,0 +1,20 @@
+<app-section-heading
+  title="Skills"
+  eyebrow="Capabilities"
+  description="Skill chips placeholder"
+/>
+<div class="skills-grid">
+  @for (group of skillGroups(); track group.id) {
+    <article class="skills-card">
+      <h3>{{ group.label }}</h3>
+      <ul class="skills-card__chips">
+        @for (skill of group.skills; track skill.id) {
+          <li>{{ skill.name }}</li>
+        }
+      </ul>
+    </article>
+  }
+  @empty {
+    <p class="section-placeholder">Skill groups will be curated soon.</p>
+  }
+</div>

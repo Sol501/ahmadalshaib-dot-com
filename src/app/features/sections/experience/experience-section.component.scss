@@ -1,3 +1,7 @@
+:host {
+  display: block;
+}
+
 .experience-list {
   display: flex;
   flex-direction: column;
@@ -9,27 +13,29 @@
   border-radius: 1rem;
   border: 1px solid rgba(15, 23, 42, 0.08);
   background-color: #fff;
-}
 
-.experience-card__role {
-  margin: 0;
-  font-weight: 600;
-}
-
-.experience-card__company,
-.experience-card__dates {
-  margin: 0.25rem 0 0;
-  color: var(--color-text-muted, #475569);
-}
-
-.experience-card ul {
-  margin: 1rem 0 0;
-  padding-inline-start: 1.5rem;
-  color: var(--color-text-muted, #475569);
-}
-
-.experience-card__tech {
-  margin: 1rem 0 0;
-  font-size: 0.9rem;
-  color: var(--color-text-muted, #475569);
+  &__role {
+    margin: 0;
+    font-weight: 600;
+  }
+  &__company,
+  &__meta {
+    margin: 0.25rem 0 0;
+    color: var(--color-text-muted, #475569);
+  }
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  &__tech {
+    margin: 1rem 0 0;
+    font-size: 0.9rem;
+    color: var(--color-text-muted, #475569);
+  }
+  & ul {
+    margin: 1rem 0 0;
+    padding-inline-start: 1.5rem;
+    color: var(--color-text-muted, #475569);
+  }
 }

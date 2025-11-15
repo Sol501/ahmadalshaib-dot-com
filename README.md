@@ -70,3 +70,15 @@ src/
       ├─ skills/
       └─ contact/
 ```
+
+---
+
+## License
+
+- **Code:**  
+  The source code in this repository is licensed under the **MIT License**.  
+  See [`LICENSE`](./LICENSE) for details.
+
+- **Content:**  
+  All non-code content (text, images, CV, and other personal materials) is **not** open source and may not be reused without my explicit permission.  
+  See [`CONTENT-LICENSE.md`](./CONTENT-LICENSE.md) for details.

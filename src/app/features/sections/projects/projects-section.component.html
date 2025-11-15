@@ -1,7 +1,7 @@
 <app-section-heading
   title="Projects"
   eyebrow="Selected work"
-  description="Project cards placeholder"
+  description="Case studies and dashboards that moved metrics"
 />
 <div class="projects-grid">
   @for (project of projects(); track project.id) {
@@ -21,7 +21,7 @@
           }
         </div>
       }
-      @if (project.highlights?.length) {
+      @if (project?.highlights?.length) {
         <ul class="project-card__highlights">
           @for (item of project.highlights; track item) {
             <li>{{ item }}</li>

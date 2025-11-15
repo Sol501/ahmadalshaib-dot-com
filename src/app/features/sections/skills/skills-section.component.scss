@@ -1,3 +1,7 @@
+:host {
+  display: block;
+}
+
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -7,27 +11,30 @@
 .skills-card {
   padding: 1.25rem;
   border-radius: 1rem;
-  border: 1px dashed rgba(15, 23, 42, 0.2);
-  background-color: rgba(56, 189, 248, 0.05);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+
+  & h3 {
+    margin: 0 0 1rem;
+  }
+
+  &__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__chips li {
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    background-color: var(--color-accent-soft);
+    border: 1px solid transparent;
+    font-size: 0.9rem;
+    color: var(--color-text-primary);
+  }
 }
 
-.skills-card h3 {
-  margin: 0 0 1rem;
-}
-
-.skills-card__chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.skills-card__chips li {
-  padding: 0.35rem 0.75rem;
-  border-radius: 999px;
-  background-color: #fff;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  font-size: 0.9rem;
-}

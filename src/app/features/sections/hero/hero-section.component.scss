@@ -1,52 +1,89 @@
+:host {
+  display: block;
+}
+
 .hero {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
   padding: 4rem 0;
-}
 
-.hero__eyebrow {
-  margin: 0;
-  font-size: 0.95rem;
-  text-transform: uppercase;
-  letter-spacing: 0.3em;
-  color: var(--color-accent, #38bdf8);
-}
+  &__eyebrow {
+    margin: 0;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--color-accent);
+  }
 
-.hero__title {
-  margin: 0;
-  font-size: clamp(2.25rem, 6vw, 4.5rem);
-  line-height: 1.1;
-  color: var(--color-heading, #0f172a);
-}
+  &__title {
+    margin: 0;
+    font-size: clamp(2.25rem, 6vw, 4.5rem);
+    line-height: 1.1;
+    color: var(--color-text-primary);
+  }
 
-.hero__summary {
-  margin: 0;
-  max-width: 60ch;
-  font-size: 1.125rem;
-  color: var(--color-text-muted, #475569);
-}
+  &__summary {
+    margin: 0;
+    max-width: 60ch;
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+  }
 
-.hero__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
+  &__highlights {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: var(--color-text-secondary);
 
-.hero__action {
-  text-decoration: none;
-  border-radius: 999px;
-  padding: 0.75rem 1.75rem;
-  font-weight: 600;
-  border: 1px solid transparent;
-  color: var(--color-heading, #0f172a);
-}
+    li {
+      padding-left: 1.5rem;
+      position: relative;
 
-.hero__action--primary {
-  background-color: var(--color-accent, #38bdf8);
-  color: #0f172a;
-}
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.65rem;
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 50%;
+        background-color: var(--color-accent);
+      }
+    }
+  }
 
-.hero__action:not(.hero__action--primary) {
-  border-color: rgba(15, 23, 42, 0.2);
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  &__action-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    font-weight: 600;
+    text-decoration: none;
+    transition: border-color 0.2s ease, color 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+    }
+  }
+
+  &__meta {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+  }
 }

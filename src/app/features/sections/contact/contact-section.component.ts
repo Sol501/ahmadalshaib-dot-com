@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { SectionHeadingComponent } from '../../../shared/components/section-heading/section-heading.component';
@@ -23,6 +23,10 @@ export class ContactSectionComponent {
     email: ['', [Validators.required, Validators.email]],
     message: ['', [Validators.required, Validators.minLength(10)]]
   });
+
+  readonly isSubmitting = signal(false);
+  readonly submitState = signal<'idle' | 'success' | 'error'>('idle');
+  readonly submitMessage = signal<string | null>(null);
 
   readonly formInvalid = computed(() => this.contactForm.invalid && this.contactForm.touched);
 
@@ -49,9 +53,33 @@ export class ContactSectionComponent {
       return;
     }
 
-    // Placeholder: integration with backend or external service can be added later.
-    // eslint-disable-next-line no-alert
-    alert('Thanks for reaching out! I will get back to you shortly.');
-    this.contactForm.reset();
+    this.isSubmitting.set(true);
+    this.submitState.set('idle');
+    this.submitMessage.set(null);
+
+    const payload = {
+      fullName: this.fullName?.value,
+      email: this.email?.value,
+      message: this.message?.value
+    };
+
+    fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Request failed');
+        }
+        this.submitState.set('success');
+        this.submitMessage.set('Thanks for reaching out. I typically reply within 1-2 business days.');
+        this.contactForm.reset();
+      })
+      .catch(() => {
+        this.submitState.set('error');
+        this.submitMessage.set('Unable to send right now. Please email me directly at ahmad.alshaib@outlook.com.');
+      })
+      .finally(() => this.isSubmitting.set(false));
   }
 }

@@ -1,8 +1,66 @@
 <app-section-heading
   title="Contact"
   eyebrow="Get in touch"
-  description="Contact form placeholder"
+  description="Let's talk about frontend roles, Angular projects, or cross-team collaboration"
 />
-<p class="section-placeholder">
-  A reactive contact form, social links, and mailto CTA will land here shortly.
-</p>
+<div class="contact__content">
+  <div class="contact__copy">
+    <p>
+      I'm currently based in Damascus and available for remote roles or employer-sponsored relocation
+      to Riyadh, Jeddah, or Dhahran. If you need someone to stabilize an Angular codebase, speed up
+      dashboards, or tighten your testing pipeline, I'm happy to chat.
+    </p>
+    <ul class="contact__meta">
+      <li>4+ years in enterprise Angular, Nx, Jest, and performance profiling.</li>
+      <li>Bilingual: Arabic (native) · English (IELTS 7.5).</li>
+      <li>Preferred contact: email response within 1-2 business days.</li>
+    </ul>
+    <a class="contact__email" href="mailto:ahmad@ahmadalshaib.com">ahmad@ahmadalshaib.com</a>
+    <p class="contact__note">
+      Please include project context, timelines, and whether the role is remote or relocation-backed.
+    </p>
+  </div>
+
+  <form class="contact__form" [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
+    <label class="contact__field">
+      <span>Full name</span>
+      <input
+        type="text"
+        formControlName="fullName"
+        placeholder="Your name"
+        [class.contact__input--invalid]="isFieldInvalid('fullName')"
+      />
+      @if (isFieldInvalid('fullName')) {
+        <small>Please enter at least 2 characters.</small>
+      }
+    </label>
+
+    <label class="contact__field">
+      <span>Email</span>
+      <input
+        type="email"
+        formControlName="email"
+        placeholder="you@company.com"
+        [class.contact__input--invalid]="isFieldInvalid('email')"
+      />
+      @if (isFieldInvalid('email')) {
+        <small>Provide a valid email address so I can respond.</small>
+      }
+    </label>
+
+    <label class="contact__field">
+      <span>Message</span>
+      <textarea
+        rows="5"
+        formControlName="message"
+        placeholder="Project scope, timeline, or questions..."
+        [class.contact__input--invalid]="isFieldInvalid('message')"
+      ></textarea>
+      @if (isFieldInvalid('message')) {
+        <small>Share a short brief (10+ characters) so I understand your ask.</small>
+      }
+    </label>
+
+    <button type="submit" class="btn-primary">Send message</button>
+  </form>
+</div>

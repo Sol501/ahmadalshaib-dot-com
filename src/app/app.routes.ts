@@ -12,5 +12,9 @@ export const routes: Routes = [
           import('./features/home/home.component').then((m) => m.HomeComponent)
       }
     ]
+  },
+  {
+    path: '**',
+    redirectTo: ''
   }
 ];

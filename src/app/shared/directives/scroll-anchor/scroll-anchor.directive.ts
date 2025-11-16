@@ -10,6 +10,7 @@ export class ScrollAnchorDirective {
   targetId?: string;
 
   private readonly document = inject(DOCUMENT);
+  private readonly headerOffsetPx = 96;
 
   @HostListener('click', ['$event'])
   onClick(event: MouseEvent): void {
@@ -22,15 +23,19 @@ export class ScrollAnchorDirective {
       return;
     }
 
-    event.preventDefault();
-    destination.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
     const win = this.document.defaultView;
-    if (win) {
-      const hash = `#${this.targetId}`;
-      if (win.location.hash !== hash) {
-        win.history.replaceState({}, '', hash);
-      }
+    if (!win) {
+      return;
+    }
+
+    event.preventDefault();
+    const targetPosition =
+      destination.getBoundingClientRect().top + win.scrollY - this.headerOffsetPx;
+    win.scrollTo({ top: Math.max(targetPosition, 0), behavior: 'smooth' });
+
+    const hash = `#${this.targetId}`;
+    if (win.location.hash !== hash) {
+      win.history.replaceState({}, '', hash);
     }
   }
 }

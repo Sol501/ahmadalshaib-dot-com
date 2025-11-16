@@ -60,6 +60,10 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+
+    & .btn-primary {
+      font-size: 1rem;
+    }
   }
 
   &__action-secondary {

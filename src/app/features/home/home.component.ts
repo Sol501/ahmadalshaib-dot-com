@@ -6,6 +6,7 @@ import {
   signal,
 } from '@angular/core';
 
+import { SeoService } from '../../core/services/seo.service';
 import { BackToTopComponent } from '../../shared/components/back-to-top/back-to-top.component';
 import { AboutSectionComponent } from '../sections/about/about-section.component';
 import { ContactSectionComponent } from '../sections/contact/contact-section.component';
@@ -35,7 +36,23 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   private readonly heroSectionId = 'hero';
   private readonly intersectionObserver: IntersectionObserver;
 
-  constructor() {
+  constructor(private readonly _seoService: SeoService) {
+    this._seoService.updateTags({
+      title: 'Ahmad Alshaib | Frontend Engineer (Angular / TypeScript)',
+      description:
+        'Frontend Engineer in Damascus building enterprise-grade Angular dashboards and self-serve platforms with measurable performance, testing, and UX impact.',
+      keywords: [
+        'Ahmad Alshaib',
+        'Frontend Engineer',
+        'Angular developer',
+        'TypeScript',
+        'Nx',
+        'Jest',
+        'Damascus',
+        'Remote'
+      ]
+    });
+
     this.intersectionObserver = new IntersectionObserver(([entry]) => {
       this.showBackToTop.set(!entry.isIntersecting);
     });

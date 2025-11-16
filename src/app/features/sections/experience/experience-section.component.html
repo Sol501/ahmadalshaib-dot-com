@@ -9,7 +9,11 @@
       <header>
         <p class="experience-card__role">{{ experience.role }}</p>
         <p class="experience-card__company">{{ experience.company }}</p>
-        <p class="experience-card__dates">{{ experience.startDate }} — {{ experience.endDate ?? 'Present' }}</p>
+        <p class="experience-card__meta">
+          <span>{{ experience.location }}</span>
+          <span>•</span>
+          <span>{{ experience.startDate }} — {{ experience.endDate ?? 'Present' }}</span>
+        </p>
       </header>
       <ul>
         @for (achievement of experience.achievements; track achievement) {

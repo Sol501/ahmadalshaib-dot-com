@@ -17,5 +17,25 @@ import { ListJoinPipe } from '../../../shared/pipes/list-join/list-join.pipe';
   }
 })
 export class ProjectsSectionComponent {
-  readonly projects = signal<readonly ProjectSummary[]>([]);
+  readonly projects = signal<readonly ProjectSummary[]>([
+    {
+      id: 'syrianmanufacturing',
+      title: 'syrianmanufacturing.com Admin Dashboard',
+      description:
+        'Angular admin surface for Damascus Chamber of Industry that raised engagement and sped up workflows for manufacturing members.',
+      techStack: ['Angular', 'TypeScript', 'REST APIs', 'RxJS', 'SASS'],
+      highlights: [
+        'Delivered new features that boosted daily active users by ~20%.',
+        'Cut dashboard load times by roughly 30%, improving perceived performance.',
+        'Added interactive visualizations that increased time on site by ~30% and conversions by ~10%.'
+      ],
+      links: [
+        {
+          label: 'Case Study',
+          url: 'https://syrianmanufacturing.com',
+          type: 'live'
+        }
+      ]
+    }
+  ]);
 }

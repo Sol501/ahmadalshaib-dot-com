@@ -26,11 +26,13 @@ export class HeaderComponent {
 
   readonly theme = this._themeService.theme;
   readonly themeLabel = computed(() =>
-    this.theme() === 'dark' ? 'Switch to light' : 'Switch to dark'
+    this.theme() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'
   );
   readonly themeIcon = computed(() => (this.theme() === 'dark' ? '☀️' : '🌙'));
 
-  toggleTheme(): void {
-    this._themeService.toggle();
+  toggleTheme(event: MouseEvent): void {
+    const nextTheme = this.theme() === 'light' ? 'dark' : 'light';
+    this._themeService.triggerRipple(nextTheme, event.clientX, event.clientY);
+    this._themeService.setTheme(nextTheme);
   }
 }

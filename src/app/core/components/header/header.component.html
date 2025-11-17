@@ -18,7 +18,7 @@
       type="button"
       class="site-header__theme-toggle"
       [attr.aria-label]="themeLabel()"
-      (click)="toggleTheme()"
+      (click)="toggleTheme($event)"
     >
       <span class="site-header__theme-icon">{{ themeIcon() }}</span>
     </button>

@@ -14,6 +14,14 @@
         </a>
       }
     </nav>
+    <button
+      type="button"
+      class="site-header__theme-toggle"
+      [attr.aria-label]="themeLabel()"
+      (click)="toggleTheme()"
+    >
+      <span class="site-header__theme-icon">{{ themeIcon() }}</span>
+    </button>
     <a class="site-header__cta" appScrollAnchor="contact" href="#contact">Let's talk</a>
   </div>
 </header>

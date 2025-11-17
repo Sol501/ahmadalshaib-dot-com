@@ -28,6 +28,29 @@ export class ThemeService {
     this.theme.set(theme);
   }
 
+  triggerRipple(nextTheme: Theme, x: number, y: number): void {
+    const win = this._document.defaultView;
+    if (!win) {
+      return;
+    }
+
+    const size = Math.max(win.innerWidth, win.innerHeight) * 1.4;
+    const ripple = this._document.createElement('span');
+    ripple.className = `theme-ripple theme-ripple--${nextTheme}`;
+    ripple.style.width = `${size}px`;
+    ripple.style.height = `${size}px`;
+    ripple.style.left = `${x - size / 2}px`;
+    ripple.style.top = `${y - size / 2}px`;
+
+    const cleanup = () => {
+      ripple.removeEventListener('animationend', cleanup);
+      ripple.remove();
+    };
+
+    ripple.addEventListener('animationend', cleanup);
+    this._document.body.appendChild(ripple);
+  }
+
   private _getInitialTheme(): Theme {
     if (this._storedPreference === 'light' || this._storedPreference === 'dark') {
       return this._storedPreference;

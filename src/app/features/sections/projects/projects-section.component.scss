@@ -11,8 +11,8 @@
 .project-card {
   padding: 1.5rem;
   border-radius: 1.25rem;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  background-color: #fff;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -31,13 +31,13 @@
 
   &__description {
     margin: 0.5rem 0 0;
-    color: var(--color-text-muted, #475569);
+    color: var(--color-text-secondary);
   }
 
   &__stack {
     margin: 0;
     font-size: 0.9rem;
-    color: var(--color-text-muted, #475569);
+    color: var(--color-text-secondary);
   }
 
   &__links {
@@ -49,12 +49,20 @@
   &__link {
     text-decoration: none;
     font-weight: 600;
-    color: var(--color-accent, #38bdf8);
+    color: var(--color-accent);
   }
 
   &__highlights {
     margin: 0;
     padding-inline-start: 1.25rem;
-    color: var(--color-text-muted, #475569);
+    color: var(--color-text-secondary);
+    li {
+      position: relative;
+      padding-left: 0.5rem;
+
+      &::marker {
+        color: var(--color-accent);
+      }
+    }
   }
 }

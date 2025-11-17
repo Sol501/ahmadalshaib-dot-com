@@ -7,6 +7,7 @@
     display: grid;
     gap: 1.75rem;
     align-items: center;
+    grid-template-columns: 1fr;
 
     @media (min-width: 860px) {
       grid-template-columns: 1fr 1.6fr;
@@ -16,6 +17,7 @@
   &__image {
     display: flex;
     justify-content: center;
+    order: -1;
 
     img {
       width: min(320px, 90%);

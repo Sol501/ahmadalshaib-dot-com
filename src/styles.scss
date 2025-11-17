@@ -19,6 +19,7 @@ body {
   background-color: $color-bg;
   color: $color-text-primary;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 h1,
@@ -70,7 +71,7 @@ a {
 }
 
 .page-section {
-  width: min($page-max-width, calc(100% - 2.5rem));
+  width: min($page-max-width, calc(100% - 2rem));
   margin: 0 auto $page-section-spacing;
   padding: 0 0.5rem;
 }
@@ -81,4 +82,14 @@ a {
   border: 1px dashed $color-border;
   background-color: $color-accent-soft;
   color: $color-text-secondary;
+}
+
+@media (max-width: 640px) {
+  .page-section {
+    width: calc(100% - 1.5rem);
+  }
+
+  h1 {
+    font-size: clamp(1.8rem, 7vw, 2.6rem);
+  }
 }

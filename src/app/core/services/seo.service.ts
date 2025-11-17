@@ -10,25 +10,25 @@ export interface SeoMetadata {
 
 @Injectable({ providedIn: 'root' })
 export class SeoService {
-  private readonly title = inject(Title);
-  private readonly meta = inject(Meta);
+  private readonly _title = inject(Title);
+  private readonly _meta = inject(Meta);
 
   updateTags(metadata: SeoMetadata): void {
-    this.title.setTitle(metadata.title);
-    this.meta.updateTag({ name: 'description', content: metadata.description ?? '' });
+    this._title.setTitle(metadata.title);
+    this._meta.updateTag({ name: 'description', content: metadata.description ?? '' });
 
     const keywords = metadata.keywords?.join(', ');
     if (keywords) {
-      this.meta.updateTag({ name: 'keywords', content: keywords });
+      this._meta.updateTag({ name: 'keywords', content: keywords });
     }
 
     if (metadata.imageUrl) {
-      this.meta.updateTag({ property: 'og:image', content: metadata.imageUrl });
+      this._meta.updateTag({ property: 'og:image', content: metadata.imageUrl });
     }
 
-    this.meta.updateTag({ property: 'og:title', content: metadata.title });
+    this._meta.updateTag({ property: 'og:title', content: metadata.title });
     if (metadata.description) {
-      this.meta.updateTag({ property: 'og:description', content: metadata.description });
+      this._meta.updateTag({ property: 'og:description', content: metadata.description });
     }
   }
 }

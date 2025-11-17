@@ -13,8 +13,8 @@ import { ListJoinPipe } from '../../../shared/pipes/list-join/list-join.pipe';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     id: 'experience',
-    class: 'page-section experience-section'
-  }
+    class: 'page-section experience-section',
+  },
 })
 export class ExperienceSectionComponent {
   readonly experiences = signal<readonly ExperienceSummary[]>([
@@ -22,7 +22,7 @@ export class ExperienceSectionComponent {
       id: 'toters',
       company: 'Toters Delivery',
       role: 'Front-End Engineer',
-      location: 'Beirut, Lebanon · Remote',
+      location: 'Beirut, Lebanon • Remote',
       startDate: 'Feb 2023',
       endDate: 'Present',
       achievements: [
@@ -32,9 +32,9 @@ export class ExperienceSectionComponent {
         'Refactored Angular dashboards to improve load times by ~40-50% and stabilize slow components.',
         'Migrated AngularJS 1.5 code paths to Angular 19 and standardized Nx monorepos/shared libraries.',
         'Implemented WebSockets and hardened REST integrations to keep operations in sync in real time.',
-        'Partnered with design and product to deliver accessible, responsive interfaces with performance budgets.'
+        'Partnered with design and product to deliver accessible, responsive interfaces with performance budgets.',
       ],
-      techFocus: ['Angular 19', 'TypeScript', 'Nx', 'Jest', 'ng-mocks', 'WebSockets', 'REST APIs']
+      techFocus: ['Angular 19', 'TypeScript', 'Nx', 'Jest', 'ng-mocks', 'WebSockets', 'REST APIs'],
     },
     {
       id: 'albaraka',
@@ -47,9 +47,9 @@ export class ExperienceSectionComponent {
         'Rolled out GitLab on-prem and migrated legacy projects, improving release cadence and audit trails.',
         'Built an ATM inventory/audit dashboard parsing ATM logs to flag anomalies automatically.',
         'Developed a recruitment portal with ATS-style screening and candidate progress tracking.',
-        'Added Cypress end-to-end tests guarding critical HR and back-office workflows.'
+        'Added Cypress end-to-end tests guarding critical HR and back-office workflows.',
       ],
-      techFocus: ['Angular', 'TypeScript', 'GitLab CI', 'Cypress', 'REST APIs']
-    }
+      techFocus: ['Angular', 'TypeScript', 'GitLab CI', 'Cypress', 'REST APIs'],
+    },
   ]);
 }

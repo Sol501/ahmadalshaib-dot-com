@@ -12,16 +12,16 @@ import { SectionHeadingComponent } from '../../../shared/components/section-head
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     id: 'contact',
-    class: 'page-section contact-section'
-  }
+    class: 'page-section contact-section',
+  },
 })
 export class ContactSectionComponent {
-  private readonly formBuilder = inject(FormBuilder);
+  private readonly _formBuilder = inject(FormBuilder);
 
-  readonly contactForm: FormGroup = this.formBuilder.group({
+  readonly contactForm: FormGroup = this._formBuilder.group({
     fullName: ['', [Validators.required, Validators.minLength(2)]],
     email: ['', [Validators.required, Validators.email]],
-    message: ['', [Validators.required, Validators.minLength(10)]]
+    message: ['', [Validators.required, Validators.minLength(10)]],
   });
 
   readonly isSubmitting = signal(false);
@@ -60,25 +60,29 @@ export class ContactSectionComponent {
     const payload = {
       fullName: this.fullName?.value,
       email: this.email?.value,
-      message: this.message?.value
+      message: this.message?.value,
     };
 
     fetch('/api/contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
     })
       .then((response) => {
         if (!response.ok) {
           throw new Error('Request failed');
         }
         this.submitState.set('success');
-        this.submitMessage.set('Thanks for reaching out. I typically reply within 1-2 business days.');
+        this.submitMessage.set(
+          'Thanks for reaching out. I typically reply within 1-2 business days.'
+        );
         this.contactForm.reset();
       })
       .catch(() => {
         this.submitState.set('error');
-        this.submitMessage.set('Unable to send right now. Please email me directly at ahmad.alshaib@outlook.com.');
+        this.submitMessage.set(
+          'Unable to send right now. Please email me directly at ahmad.alshaib@outlook.com.'
+        );
       })
       .finally(() => this.isSubmitting.set(false));
   }

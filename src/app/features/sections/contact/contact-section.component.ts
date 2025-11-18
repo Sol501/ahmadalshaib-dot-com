@@ -2,11 +2,13 @@ import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@a
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { SectionHeadingComponent } from '../../../shared/components/section-heading/section-heading.component';
+import { SocialLinksComponent } from '../../../shared/components/social-links/social-links.component';
+import { SocialLink } from '../../../shared/components/social-links/_models/social-link.model';
 
 @Component({
   selector: 'app-contact-section',
   standalone: true,
-  imports: [SectionHeadingComponent, ReactiveFormsModule],
+  imports: [SectionHeadingComponent, ReactiveFormsModule, SocialLinksComponent],
   templateUrl: './contact-section.component.html',
   styleUrl: './contact-section.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -27,6 +29,20 @@ export class ContactSectionComponent {
   readonly isSubmitting = signal(false);
   readonly submitState = signal<'idle' | 'success' | 'error'>('idle');
   readonly submitMessage = signal<string | null>(null);
+  readonly socialLinks: readonly SocialLink[] = [
+    {
+      id: 'linkedin',
+      label: 'LinkedIn',
+      url: 'https://linkedin.com/in/ahmad-alshaib',
+      type: 'linkedin',
+    },
+    {
+      id: 'github',
+      label: 'GitHub',
+      url: 'https://github.com/Sol501',
+      type: 'github',
+    },
+  ];
 
   readonly formInvalid = computed(() => this.contactForm.invalid && this.contactForm.touched);
 

@@ -2,36 +2,39 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: rgba(248, 250, 252, 0.9);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  background-color: color-mix(in srgb, var(--color-surface, #fff) 92%, transparent);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
 
   &__inner {
     max-width: var(--page-max-width, 1200px);
     margin: 0 auto;
-    padding: 0.75rem 1.5rem;
+    padding: 0.75rem 1.25rem;
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1rem;
   }
 
   &__brand {
     font-weight: 600;
-    color: var(--color-heading, #0f172a);
+    color: var(--color-text-primary);
     text-decoration: none;
     letter-spacing: 0.04em;
+    transition: color 0.2s ease;
   }
 
   &__nav {
     display: flex;
-    gap: 1.25rem;
-    flex: 1;
+    gap: 1rem;
+    flex: 1 1 auto;
+    align-items: center;
   }
 
   &__nav-link {
     text-decoration: none;
     font-size: 0.95rem;
-    color: var(--color-text-muted, #475569);
+    color: var(--color-text-primary);
     font-weight: 500;
     transition: color 0.2s ease;
   }
@@ -39,6 +42,36 @@
   &__nav-link:hover,
   &__nav-link:focus-visible {
     color: var(--color-accent, #38bdf8);
+  }
+
+  &__theme-toggle {
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text-primary);
+    border-radius: 999px;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem;
+
+    &:hover,
+    &:focus-visible {
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 18%, transparent);
+    }
+
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+
+  &__theme-icon {
+    line-height: 1;
+    font-size: 1.05rem;
   }
 
   &__cta {
@@ -52,17 +85,33 @@
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 820px) {
   .site-header {
     &__inner {
       flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    &__brand {
+      font-size: 1.05rem;
     }
 
     &__nav {
       order: 3;
       width: 100%;
-      justify-content: space-between;
-      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 0.75rem;
+      overflow-x: auto;
+      padding-bottom: 0.35rem;
+      scrollbar-width: none;
+    }
+
+    &__nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    &__cta {
+      padding: 0.45rem 1rem;
     }
   }
 }

@@ -1,0 +1,19 @@
+<nav class="social-links" aria-label="Social profiles">
+  @for (link of links; track link.id) {
+    <a
+      class="social-links__item"
+      [attr.href]="link.url"
+      target="_blank"
+      rel="noreferrer noopener"
+      [attr.aria-label]="link.label"
+      [attr.title]="link.label"
+    >
+      <span
+        class="social-links__icon"
+        [style.maskImage]="'url(assets/icons/' + link.type + '.svg)'"
+        [style.webkitMaskImage]="'url(assets/icons/' + link.type + '.svg)'"
+        aria-hidden="true"
+      ></span>
+    </a>
+  }
+</nav>

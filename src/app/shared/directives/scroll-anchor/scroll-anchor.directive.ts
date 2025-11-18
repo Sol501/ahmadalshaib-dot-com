@@ -9,8 +9,7 @@ export class ScrollAnchorDirective {
   @Input('appScrollAnchor')
   targetId?: string;
 
-  private readonly document = inject(DOCUMENT);
-  private readonly headerOffsetPx = 96;
+  private readonly _document = inject(DOCUMENT);
 
   @HostListener('click', ['$event'])
   onClick(event: MouseEvent): void {
@@ -18,19 +17,21 @@ export class ScrollAnchorDirective {
       return;
     }
 
-    const destination = this.document.getElementById(this.targetId);
+    const destination = this._document.getElementById(this.targetId);
     if (!destination) {
       return;
     }
 
-    const win = this.document.defaultView;
+    const win = this._document.defaultView;
     if (!win) {
       return;
     }
 
     event.preventDefault();
+    const headerEl = this._document.querySelector<HTMLElement>('.site-header');
+    const headerOffsetPx = headerEl ? headerEl.getBoundingClientRect().height + 12 : 96;
     const targetPosition =
-      destination.getBoundingClientRect().top + win.scrollY - this.headerOffsetPx;
+      destination.getBoundingClientRect().top + win.scrollY - Math.max(headerOffsetPx, 0);
     win.scrollTo({ top: Math.max(targetPosition, 0), behavior: 'smooth' });
 
     const hash = `#${this.targetId}`;

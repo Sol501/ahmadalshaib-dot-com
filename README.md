@@ -2,7 +2,7 @@
 
 Personal portfolio website of **Ahmad Alshaib** – built with Angular, zoneless change detection, and pre-rendered (SSG) for fast, SEO-friendly delivery. It showcases my experience, projects, and skills as a software engineer.
 
-> Live: _coming soon_ – will be hosted at **https://ahmadalshaib.com**
+> Live: **<https://ahmadalshaib.com>** or **<https://alshaib.dev>**
 
 ---
 
@@ -16,9 +16,9 @@ Personal portfolio website of **Ahmad Alshaib** – built with Angular, zoneless
 - 🌐 **SEO-aware**
   - Static HTML for the main route and SEO-friendly structure for my name and role.
 - 🧱 **Modular architecture**
-  - Feature-first structure, with each section implemented as a standalone component.
+  - Feature-first structure, standalone components, and shared SCSS tokens.
 - 📬 **Contact section**
-  - Reactive form with validation and links to my public profiles.
+  - Reactive form with validation plus a Cloudflare Pages Function that emails via Resend.
 
 ---
 
@@ -29,7 +29,7 @@ Personal portfolio website of **Ahmad Alshaib** – built with Angular, zoneless
 - **Language:** TypeScript (strict)
 - **Styling:** SCSS
 - **Tooling:** Angular CLI, ESLint, Prettier
-- **Hosting:** Static hosting on a CDN (e.g. Cloudflare Pages)
+- **Hosting:** Cloudflare Pages (static assets + Pages Functions for contact)
 
 ---
 
@@ -52,49 +52,28 @@ src/
    ├─ app.config.ts
    ├─ app.routes.ts
    ├─ core/
-   │  ├─ layout/
-   │  │  ├─ main-layout.component.ts
-   │  │  └─ main-layout.component.html
-   │  ├─ components/
-   │  │  ├─ header/
-   │  │  └─ footer/
-   │  ├─ services/
-   │  │  ├─ seo.service.ts
-   │  │  └─ analytics.service.ts
-   │  ├─ guards/
-   │  └─ models/
-   │     ├─ project.model.ts
-   │     └─ experience.model.ts
+   │  ├─ layout/ (layout shell)
+   │  ├─ components/ (header, footer)
+   │  ├─ services/ (seo.service.ts)
+   │  └─ models/ (project, experience, skills, nav)
    ├─ shared/
-   │  ├─ components/
-   │  │  ├─ section-title/
-   │  │  ├─ project-card/
-   │  │  └─ skill-chip/
-   │  ├─ pipes/
-   │  └─ directives/
+   │  ├─ components/ (section heading, back-to-top)
+   │  ├─ directives/ (scroll anchor)
+   │  └─ pipes/ (list join)
    └─ features/
       ├─ home/
-      │  ├─ home.component.ts
-      │  └─ home.component.html
       └─ sections/
          ├─ hero/
-         │  ├─ hero-section.component.ts
-         │  └─ hero-section.component.html
          ├─ about/
-         │  ├─ about-section.component.ts
-         │  └─ about-section.component.html
          ├─ experience/
-         │  ├─ experience-section.component.ts
-         │  └─ experience-section.component.html
          ├─ projects/
-         │  ├─ projects-section.component.ts
-         │  └─ projects-section.component.html
          ├─ skills/
-         │  ├─ skills-section.component.ts
-         │  └─ skills-section.component.html
          └─ contact/
-            ├─ contact-section.component.ts
-            └─ contact-section.component.html
+functions/
+└─ api/
+   └─ contact.ts (Cloudflare Pages Function -> Resend email)
+assets/
+└─ images/ (profile photo, favicon)
 ```
 
 - `core/` – Application-wide layout and singletons (layout, services, models).
@@ -110,7 +89,7 @@ src/
 - Technical model:
   - Angular CSR at runtime.
   - Static Site Generation (SSG/prerender) at build time for improved SEO and first paint.
-- No runtime SSR / Node.js server required; the site can be deployed as static files.
+- No runtime SSR / Node.js server required; the site is static assets + a Pages Function for contact.
 
 ---
 
@@ -159,46 +138,31 @@ npm run build
 ng build --configuration production
 ```
 
-If SSG/prerender is configured, the build step will generate pre-rendered HTML for the main route in the `dist/` folder. The output can be deployed as static assets.
+The build generates pre-rendered HTML for the main route in `dist/ahmadalshaib-dot-com/browser`. Deploy the static output plus the `functions/` directory for Cloudflare Pages.
 
 ---
 
 ## Scripts
 
-Example npm scripts (adjust to match the actual `package.json`):
+From `package.json`:
 
 ```jsonc
 {
-  "scripts": {
-    "start": "ng serve",
-    "build": "ng build",
-    "build:prod": "ng build --configuration production",
-    "lint": "ng lint",
-    "test": "ng test",
-    "watch": "ng build --watch --configuration development"
-  }
+  "start": "ng serve",
+  "build": "ng build",
+  "watch": "ng build --watch --configuration development",
+  "test": "ng test"
 }
-```
-
-Run a script with:
-
-```bash
-npm run <script-name>
 ```
 
 ---
 
-## SEO & Analytics
+## SEO & Contact
 
-The project is structured to support:
-
-- A central `SeoService` (`core/services/seo.service.ts`) for:
-  - Page title
-  - Meta description
-  - Social / Open Graph tags (where applicable)
-- Optional `AnalyticsService` for lightweight analytics integration.
-
-These can be wired into `home` and section components as needed, while keeping the app SSG-friendly and not dependent on SSR.
+- SEO is handled via the `SeoService` (`core/services/seo.service.ts`), called from `HomeComponent`.
+- Contact form posts to a Cloudflare Pages Function (`functions/api/contact.ts`) that relays mail via Resend.
+  - Required env vars on Cloudflare Pages: `RESEND_API_KEY`, `CONTACT_TO`
+  - Optional: `CONTACT_FROM` (defaults to `noreply@ahmadalshaib.com`)
 
 ---
 
@@ -212,7 +176,7 @@ npm run build:prod
 npm run build
 ```
 
-2. Deploy the contents of `dist/ahmadalshaib-dot-com/` to your hosting provider, for example:
+1. Deploy the contents of `dist/ahmadalshaib-dot-com/` to your hosting provider, for example:
    - Cloudflare Pages
    - GitHub Pages
    - Any static file hosting / CDN

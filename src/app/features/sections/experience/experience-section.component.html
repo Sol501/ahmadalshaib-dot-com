@@ -1,7 +1,7 @@
 <app-section-heading
   title="Experience"
   eyebrow="Career"
-  description="Timeline placeholder"
+  description="Enterprise frontend roles focused on Angular performance, testing, and self-serve platforms"
 />
 <div class="experience-list">
   @for (experience of experiences(); track experience.id) {
@@ -12,7 +12,7 @@
         <p class="experience-card__meta">
           <span>{{ experience.location }}</span>
           <span>•</span>
-          <span>{{ experience.startDate }} — {{ experience.endDate ?? 'Present' }}</span>
+          <span>{{ experience.startDate }} - {{ experience.endDate ?? 'Present' }}</span>
         </p>
       </header>
       <ul>

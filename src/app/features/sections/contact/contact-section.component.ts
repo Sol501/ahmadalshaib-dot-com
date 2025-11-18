@@ -2,31 +2,47 @@ import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@a
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { SectionHeadingComponent } from '../../../shared/components/section-heading/section-heading.component';
+import { SocialLinksComponent } from '../../../shared/components/social-links/social-links.component';
+import { SocialLink } from '../../../shared/components/social-links/_models/social-link.model';
 
 @Component({
   selector: 'app-contact-section',
   standalone: true,
-  imports: [SectionHeadingComponent, ReactiveFormsModule],
+  imports: [SectionHeadingComponent, ReactiveFormsModule, SocialLinksComponent],
   templateUrl: './contact-section.component.html',
   styleUrl: './contact-section.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     id: 'contact',
-    class: 'page-section contact-section'
-  }
+    class: 'page-section contact-section',
+  },
 })
 export class ContactSectionComponent {
-  private readonly formBuilder = inject(FormBuilder);
+  private readonly _formBuilder = inject(FormBuilder);
 
-  readonly contactForm: FormGroup = this.formBuilder.group({
+  readonly contactForm: FormGroup = this._formBuilder.group({
     fullName: ['', [Validators.required, Validators.minLength(2)]],
     email: ['', [Validators.required, Validators.email]],
-    message: ['', [Validators.required, Validators.minLength(10)]]
+    message: ['', [Validators.required, Validators.minLength(10)]],
   });
 
   readonly isSubmitting = signal(false);
   readonly submitState = signal<'idle' | 'success' | 'error'>('idle');
   readonly submitMessage = signal<string | null>(null);
+  readonly socialLinks: readonly SocialLink[] = [
+    {
+      id: 'linkedin',
+      label: 'LinkedIn',
+      url: 'https://linkedin.com/in/ahmad-alshaib',
+      type: 'linkedin',
+    },
+    {
+      id: 'github',
+      label: 'GitHub',
+      url: 'https://github.com/Sol501',
+      type: 'github',
+    },
+  ];
 
   readonly formInvalid = computed(() => this.contactForm.invalid && this.contactForm.touched);
 
@@ -60,25 +76,29 @@ export class ContactSectionComponent {
     const payload = {
       fullName: this.fullName?.value,
       email: this.email?.value,
-      message: this.message?.value
+      message: this.message?.value,
     };
 
     fetch('/api/contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
     })
       .then((response) => {
         if (!response.ok) {
           throw new Error('Request failed');
         }
         this.submitState.set('success');
-        this.submitMessage.set('Thanks for reaching out. I typically reply within 1-2 business days.');
+        this.submitMessage.set(
+          'Thanks for reaching out. I typically reply within 1-2 business days.'
+        );
         this.contactForm.reset();
       })
       .catch(() => {
         this.submitState.set('error');
-        this.submitMessage.set('Unable to send right now. Please email me directly at ahmad.alshaib@outlook.com.');
+        this.submitMessage.set(
+          'Unable to send right now. Please email me directly at ahmad.alshaib@outlook.com.'
+        );
       })
       .finally(() => this.isSubmitting.set(false));
   }

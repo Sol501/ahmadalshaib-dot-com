@@ -19,6 +19,7 @@
     <p class="contact__note">
       Please include project context, timelines, and whether the role is remote or relocation-backed.
     </p>
+    <app-social-links [links]="socialLinks" />
   </div>
 
   <form class="contact__form" [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>

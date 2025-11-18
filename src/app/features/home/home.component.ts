@@ -33,8 +33,8 @@ import { SkillsSectionComponent } from '../sections/skills/skills-section.compon
 })
 export class HomeComponent implements AfterViewInit, OnDestroy {
   readonly showBackToTop = signal(false);
-  private readonly heroSectionId = 'hero';
-  private readonly intersectionObserver: IntersectionObserver;
+  private readonly _heroSectionId = 'hero';
+  private readonly _intersectionObserver: IntersectionObserver;
 
   constructor(private readonly _seoService: SeoService) {
     this._seoService.updateTags({
@@ -53,21 +53,21 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       ]
     });
 
-    this.intersectionObserver = new IntersectionObserver(([entry]) => {
+    this._intersectionObserver = new IntersectionObserver(([entry]) => {
       this.showBackToTop.set(!entry.isIntersecting);
     });
   }
 
   ngAfterViewInit(): void {
-    const heroSection = document.getElementById(this.heroSectionId);
+    const heroSection = document.getElementById(this._heroSectionId);
 
     if (heroSection) {
-      this.intersectionObserver.observe(heroSection);
+      this._intersectionObserver.observe(heroSection);
     }
   }
 
   ngOnDestroy(): void {
-    this.intersectionObserver.disconnect();
+    this._intersectionObserver.disconnect();
   }
 
   scrollToTop(): void {

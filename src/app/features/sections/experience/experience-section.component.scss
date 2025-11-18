@@ -11,17 +11,19 @@
 .experience-card {
   padding: 1.25rem;
   border-radius: 1rem;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  background-color: #fff;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
 
   &__role {
     margin: 0;
     font-weight: 600;
+    color: var(--color-text-primary);
   }
   &__company,
   &__meta {
     margin: 0.25rem 0 0;
-    color: var(--color-text-muted, #475569);
+    color: var(--color-text-secondary);
   }
   &__meta {
     display: flex;
@@ -31,11 +33,20 @@
   &__tech {
     margin: 1rem 0 0;
     font-size: 0.9rem;
-    color: var(--color-text-muted, #475569);
+    color: var(--color-text-secondary);
   }
   & ul {
     margin: 1rem 0 0;
     padding-inline-start: 1.5rem;
-    color: var(--color-text-muted, #475569);
+    color: var(--color-text-secondary);
+
+    li {
+      position: relative;
+      padding-left: 0.5rem;
+
+      &::marker {
+        color: var(--color-accent);
+      }
+    }
   }
 }

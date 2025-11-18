@@ -7,10 +7,10 @@
     display: grid;
     gap: 1.75rem;
     align-items: center;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1.6fr;
 
-    @media (min-width: 860px) {
-      grid-template-columns: 1fr 1.6fr;
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
     }
   }
 

@@ -65,6 +65,12 @@
     & .btn-primary {
       font-size: 1rem;
     }
+
+    @media (max-width: 768px) {
+      & > * {
+        flex-grow: 1;
+      }
+    }
   }
 
   &__action-secondary {

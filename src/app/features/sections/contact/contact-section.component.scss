@@ -11,9 +11,10 @@
     border: 1px solid var(--color-border);
     background-color: var(--color-surface);
     box-shadow: 0 20px 40px rgba(2, 6, 23, 0.08);
+    grid-template-columns: 1fr 1fr;
 
-    @media (min-width: 900px) {
-      grid-template-columns: 1fr 1fr;
+    @media (max-width: 768px) {
+      grid-template-columns: unset;
     }
   }
 

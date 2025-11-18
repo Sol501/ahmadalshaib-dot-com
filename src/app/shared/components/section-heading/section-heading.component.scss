@@ -4,25 +4,30 @@
   gap: 1rem;
   margin-bottom: 1.5rem;
   flex-wrap: wrap;
+
+  &__eyebrow {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin: 0;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: clamp(1.6rem, 2.8vw, 2.6rem);
+    color: var(--color-text-primary);
+  }
+
+  &__description {
+    margin: 0.5rem 0 0;
+    color: var(--color-text-secondary);
+    max-width: 60ch;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 }
 
-.section-heading__eyebrow {
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-accent);
-  margin: 0;
-}
-
-.section-heading__title {
-  margin: 0;
-  font-size: clamp(1.6rem, 2.8vw, 2.6rem);
-  color: var(--color-text-primary);
-}
-
-.section-heading__description {
-  margin: 0.5rem 0 0;
-  color: var(--color-text-secondary);
-  max-width: 60ch;
-}

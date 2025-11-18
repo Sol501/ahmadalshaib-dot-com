@@ -1,0 +1,38 @@
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  &__item {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+    color: var(--color-text-primary);
+    transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      transform: translateY(-2px);
+      border-color: var(--color-accent);
+      box-shadow: 0 6px 14px rgba(15, 23, 42, 0.12);
+      color: var(--color-accent);
+    }
+  }
+
+  &__icon {
+    width: 20px;
+    height: 20px;
+    background-color: currentColor;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    -webkit-mask-position: center;
+  }
+}

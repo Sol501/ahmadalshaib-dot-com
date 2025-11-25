@@ -7,11 +7,12 @@ import {
   Output,
 } from '@angular/core';
 import { IconComponent } from '../icon/icon.component';
+import { TooltipDirective } from '../../directives/tooltip/tooltip.directive';
 
 @Component({
   selector: 'app-back-to-top',
   standalone: true,
-  imports: [IconComponent],
+  imports: [IconComponent, TooltipDirective],
   templateUrl: './back-to-top.component.html',
   styleUrl: './back-to-top.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

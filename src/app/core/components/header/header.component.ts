@@ -3,11 +3,12 @@ import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@a
 import { NavigationLink } from '../../models/navigation-link.model';
 import { ScrollAnchorDirective } from '../../../shared/directives/scroll-anchor/scroll-anchor.directive';
 import { ThemeService } from '../../services/theme.service';
+import { IconComponent } from '../../../shared/components/icon/icon.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [ScrollAnchorDirective],
+  imports: [ScrollAnchorDirective, IconComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,7 +29,7 @@ export class HeaderComponent {
   readonly themeLabel = computed(() =>
     this.theme() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'
   );
-  readonly themeIcon = computed(() => (this.theme() === 'dark' ? '☀️' : '🌙'));
+  readonly themeIcon = computed(() => (this.theme() === 'dark' ? 'sun' : 'moon'));
 
   toggleTheme(event: MouseEvent): void {
     const nextTheme = this.theme() === 'light' ? 'dark' : 'light';

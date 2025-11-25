@@ -26,13 +26,13 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
   private _tooltipEl: HTMLDivElement | null = null;
 
   ngOnInit(): void {
-    this.ensureStyles();
+    this._ensureStyles();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['tooltipText'] && this._tooltipEl) {
       this._tooltipEl.innerText = this.tooltipText;
-      this.positionTooltip();
+      this._positionTooltip();
     }
   }
 
@@ -40,9 +40,31 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
     this.hideTooltip();
   }
 
-  @HostListener('mouseenter')
-  @HostListener('focusin')
-  showTooltip(): void {
+  @HostListener('pointerenter', ['$event'])
+  onPointerEnter(event: PointerEvent): void {
+    if (event.pointerType === 'touch') {
+      return;
+    }
+    this._showTooltip();
+  }
+
+  @HostListener('pointerleave')
+  hideTooltip(): void {
+    if (this._tooltipEl) {
+      this._tooltipEl.remove();
+      this._tooltipEl = null;
+    }
+  }
+
+  @HostListener('window:scroll')
+  @HostListener('window:resize')
+  onViewportChange(): void {
+    if (this._tooltipEl) {
+      this._positionTooltip();
+    }
+  }
+
+  private _showTooltip(): void {
     if (!this.tooltipText) {
       return;
     }
@@ -63,31 +85,14 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
       if (!this._tooltipEl) {
         return;
       }
-      this.positionTooltip();
+      this._positionTooltip();
       this._tooltipEl.style.visibility = 'visible';
       this._tooltipEl.style.opacity = '1';
       this._tooltipEl.style.transform = 'scale(1)';
     });
   }
 
-  @HostListener('mouseleave')
-  @HostListener('focusout')
-  hideTooltip(): void {
-    if (this._tooltipEl) {
-      this._tooltipEl.remove();
-      this._tooltipEl = null;
-    }
-  }
-
-  @HostListener('window:scroll')
-  @HostListener('window:resize')
-  onViewportChange(): void {
-    if (this._tooltipEl) {
-      this.positionTooltip();
-    }
-  }
-
-  private positionTooltip(): void {
+  private _positionTooltip(): void {
     if (!this._tooltipEl) {
       return;
     }
@@ -104,23 +109,23 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
     ];
 
     for (const place of placements) {
-      const pos = this.calculatePosition(place, hostRect, tooltipRect, margin);
-      if (this.fitsInViewport(pos, tooltipRect, margin)) {
-        this.applyPosition(pos, place);
+      const pos = this._calculatePosition(place, hostRect, tooltipRect, margin);
+      if (this._fitsInViewport(pos, tooltipRect, margin)) {
+        this._applyPosition(pos, place);
         return;
       }
     }
 
-    const fallbackPos = this.calculatePosition(
+    const fallbackPos = this._calculatePosition(
       this.tooltipPlacement,
       hostRect,
       tooltipRect,
       margin
     );
-    this.applyPosition(fallbackPos, this.tooltipPlacement);
+    this._applyPosition(fallbackPos, this.tooltipPlacement);
   }
 
-  private calculatePosition(
+  private _calculatePosition(
     placement: TooltipPlacement,
     host: DOMRect,
     tooltip: DOMRect,
@@ -151,7 +156,11 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  private fitsInViewport(pos: { top: number; left: number }, tooltip: DOMRect, margin: number): boolean {
+  private _fitsInViewport(
+    pos: { top: number; left: number },
+    tooltip: DOMRect,
+    margin: number
+  ): boolean {
     const win = this._document.defaultView;
     if (!win) return true;
 
@@ -164,14 +173,14 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
     );
   }
 
-  private applyPosition(pos: { top: number; left: number }, placement: TooltipPlacement): void {
+  private _applyPosition(pos: { top: number; left: number }, placement: TooltipPlacement): void {
     if (!this._tooltipEl) return;
     this._tooltipEl.style.top = `${pos.top}px`;
     this._tooltipEl.style.left = `${pos.left}px`;
     this._tooltipEl.dataset['placement'] = placement;
   }
 
-  private ensureStyles(): void {
+  private _ensureStyles(): void {
     const styleId = 'app-tooltip-styles';
     if (this._document.getElementById(styleId)) {
       return;
@@ -240,5 +249,4 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
     `;
     this._document.head.appendChild(styleEl);
   }
-
 }

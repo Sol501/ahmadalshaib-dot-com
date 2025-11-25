@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  flex-wrap: wrap;
 
   &__item {
     width: 40px;
@@ -27,12 +28,5 @@
   &__icon {
     width: 20px;
     height: 20px;
-    background-color: currentColor;
-    mask-repeat: no-repeat;
-    mask-size: contain;
-    mask-position: center;
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-size: contain;
-    -webkit-mask-position: center;
   }
 }

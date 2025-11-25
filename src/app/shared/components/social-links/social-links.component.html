@@ -8,12 +8,10 @@
       [attr.aria-label]="link.label"
       [attr.title]="link.label"
     >
-      <span
+      <app-icon
         class="social-links__icon"
-        [style.maskImage]="'url(assets/icons/' + link.type + '.svg)'"
-        [style.webkitMaskImage]="'url(assets/icons/' + link.type + '.svg)'"
-        aria-hidden="true"
-      ></span>
+        [name]="link.type"
+        size="20" />
     </a>
   }
 </nav>

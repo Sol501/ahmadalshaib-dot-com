@@ -4,6 +4,7 @@ import {
   OnDestroy,
   AfterViewInit,
   signal,
+  inject,
 } from '@angular/core';
 
 import { SeoService } from '../../core/services/seo.service';
@@ -25,7 +26,7 @@ import { SkillsSectionComponent } from '../sections/skills/skills-section.compon
     ExperienceSectionComponent,
     ProjectsSectionComponent,
     SkillsSectionComponent,
-    ContactSectionComponent
+    ContactSectionComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -35,8 +36,9 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   readonly showBackToTop = signal(false);
   private readonly _heroSectionId = 'hero';
   private readonly _intersectionObserver: IntersectionObserver;
+  private readonly _seoService = inject(SeoService);
 
-  constructor(private readonly _seoService: SeoService) {
+  constructor() {
     this._seoService.updateTags({
       title: 'Ahmad Alshaib | Frontend Engineer (Angular / TypeScript)',
       description:
@@ -49,8 +51,8 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
         'Nx',
         'Jest',
         'Damascus',
-        'Remote'
-      ]
+        'Remote',
+      ],
     });
 
     this._intersectionObserver = new IntersectionObserver(([entry]) => {

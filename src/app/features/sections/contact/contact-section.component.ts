@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 
 import { SectionHeadingComponent } from '../../../shared/components/section-heading/section-heading.component';
 import { SocialLinksComponent } from '../../../shared/components/social-links/social-links.component';
-import { SocialLink } from '../../../shared/components/social-links/_models/social-link.model';
+import { SocialLink, SocialLinkTypeEnum } from '../../../shared/components/social-links/_models/social-link.model';
 
 @Component({
   selector: 'app-contact-section',
@@ -34,13 +34,13 @@ export class ContactSectionComponent {
       id: 'linkedin',
       label: 'LinkedIn',
       url: 'https://linkedin.com/in/ahmad-alshaib',
-      type: 'linkedin',
+      type: SocialLinkTypeEnum.LinkedIn,
     },
     {
       id: 'github',
       label: 'GitHub',
       url: 'https://github.com/Sol501',
-      type: 'github',
+      type: SocialLinkTypeEnum.GitHub,
     },
   ];
 

@@ -12,6 +12,8 @@ html {
   background-color: $color-bg;
   color: $color-text-primary;
   transition: background-color 0.3s ease, color 0.3s ease;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
 }
 
 body {
@@ -74,8 +76,19 @@ a {
 
 .page-section {
   width: min($page-max-width, calc(100% - 2rem));
-  margin: 0 auto $page-section-spacing;
-  padding: 0 0.5rem;
+  margin: 0 auto;
+  min-height: 100vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  padding: clamp(2.5rem, 8vw, 4rem) 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .section-placeholder {
@@ -131,8 +144,16 @@ a {
 
 
 @media (max-width: 768px) {
+  html {
+    scroll-snap-type: unset;
+  }
+
   .page-section {
     width: calc(100% - 1.5rem);
+    min-height: unset;
+    display: block;
+    padding: 0 0.5rem;
+    margin: 0 auto $page-section-spacing;
   }
 
   h1 {

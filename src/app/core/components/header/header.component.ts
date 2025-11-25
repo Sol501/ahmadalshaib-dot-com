@@ -4,11 +4,12 @@ import { NavigationLink } from '../../models/navigation-link.model';
 import { ScrollAnchorDirective } from '../../../shared/directives/scroll-anchor/scroll-anchor.directive';
 import { ThemeService } from '../../services/theme.service';
 import { IconComponent } from '../../../shared/components/icon/icon.component';
+import { TooltipDirective } from '../../../shared/directives/tooltip/tooltip.directive';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [ScrollAnchorDirective, IconComponent],
+  imports: [ScrollAnchorDirective, IconComponent, TooltipDirective],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

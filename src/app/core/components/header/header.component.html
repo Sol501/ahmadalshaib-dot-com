@@ -16,6 +16,7 @@
     </nav>
     <button
       type="button"
+      [appTooltip]="themeLabel()"
       class="site-header__theme-toggle"
       [attr.aria-label]="themeLabel()"
       (click)="toggleTheme($event)"

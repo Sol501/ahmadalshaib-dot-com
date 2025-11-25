@@ -4,11 +4,12 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { SectionHeadingComponent } from '../../../shared/components/section-heading/section-heading.component';
 import { SocialLinksComponent } from '../../../shared/components/social-links/social-links.component';
 import { SocialLink, SocialLinkTypeEnum } from '../../../shared/components/social-links/_models/social-link.model';
+import { TooltipDirective } from '../../../shared/directives/tooltip/tooltip.directive';
 
 @Component({
   selector: 'app-contact-section',
   standalone: true,
-  imports: [SectionHeadingComponent, ReactiveFormsModule, SocialLinksComponent],
+  imports: [SectionHeadingComponent, ReactiveFormsModule, SocialLinksComponent, TooltipDirective],
   templateUrl: './contact-section.component.html',
   styleUrl: './contact-section.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

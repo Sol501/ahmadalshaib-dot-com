@@ -17,8 +17,12 @@ Personal portfolio website of **Ahmad Alshaib** – built with Angular, zoneless
   - Static HTML for the main route and SEO-friendly structure for my name and role.
 - 🧱 **Modular architecture**
   - Feature-first structure, standalone components, and shared SCSS tokens.
+- 🌓 **Theming**
+  - Light/dark toggle with system preference default and smooth transitions.
 - 📬 **Contact section**
   - Reactive form with validation plus a Cloudflare Pages Function that emails via Resend.
+- 🧭 **UI polish**
+  - Sticky header with smooth anchor scrolling, back-to-top button, inline social icons, per-skill icons, and adaptive tooltips.
 
 ---
 
@@ -46,8 +50,7 @@ src/
 │  └─ _variables.scss
 ├─ assets/
 │  ├─ images/
-│  ├─ data/
-│  └─ icons/
+│  └─ icons/ (general + skills logos)
 └─ app/
    ├─ app.config.ts
    ├─ app.routes.ts
@@ -57,8 +60,8 @@ src/
    │  ├─ services/ (seo.service.ts)
    │  └─ models/ (project, experience, skills, nav)
    ├─ shared/
-   │  ├─ components/ (section heading, back-to-top)
-   │  ├─ directives/ (scroll anchor)
+   │  ├─ components/ (icon, section heading, social links, back-to-top)
+   │  ├─ directives/ (scroll anchor, tooltip)
    │  └─ pipes/ (list join)
    └─ features/
       ├─ home/
@@ -77,7 +80,7 @@ assets/
 ```
 
 - `core/` – Application-wide layout and singletons (layout, services, models).
-- `shared/` – Reusable UI components, directives, and pipes.
+- `shared/` – Reusable UI components (icons, social links, back-to-top), directives (scroll anchor, tooltip), and pipes.
 - `features/home` – Root page that composes all sections.
 - `features/sections/*` – Each section of the single-page layout as its own standalone component.
 

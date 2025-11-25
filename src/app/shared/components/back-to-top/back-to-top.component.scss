@@ -8,6 +8,9 @@
   transform: translateY(15px);
   pointer-events: none;
   transition: 0.2s ease;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  width: 3.25rem;
 
   &--visible {
     opacity: 1;

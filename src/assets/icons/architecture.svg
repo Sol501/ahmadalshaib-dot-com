@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <rect x="7.409" y="0.031" width="9.62" height="4.81" rx="1" style="stroke-width: 1;" transform="matrix(1, 0, 0, 1, 1.7763568394002505e-15, 4.440892098500626e-16)"/>
+  <rect x="10.616" y="4.841" width="3.207" height="4.81" style="stroke-width: 1;" transform="matrix(1, 0, 0, 1, 1.7763568394002505e-15, 4.440892098500626e-16)"/>
+  <rect x="2.747" y="9.651" width="18.803" height="4.81" rx="1" style="stroke-width: 1;" transform="matrix(1, 0, 0, 1, 1.7763568394002505e-15, 4.440892098500626e-16)"/>
+  <rect x="3.941" y="14.461" width="3.207" height="4.81" style="stroke-width: 1;" transform="matrix(1, 0, 0, 1, 1.7763568394002505e-15, 4.440892098500626e-16)"/>
+  <rect x="17.1" y="14.461" width="3.207" height="4.81" style="stroke-width: 1;" transform="matrix(1, 0, 0, 1, 1.7763568394002505e-15, 4.440892098500626e-16)"/>
+  <rect x="0.679" y="19.271" width="9.62" height="4.81" rx="1" style="stroke-width: 1;" transform="matrix(1, 0, 0, 1, 1.7763568394002505e-15, 4.440892098500626e-16)"/>
+  <rect x="13.825" y="19.271" width="9.62" height="4.81" rx="1" style="stroke-width: 1;" transform="matrix(1, 0, 0, 1, 1.7763568394002505e-15, 4.440892098500626e-16)"/>
+</svg>

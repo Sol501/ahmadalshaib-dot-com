@@ -1,7 +1,11 @@
 <button
+  title="back to top"
   type="button"
   class="btn-primary back-to-top"
   [class.back-to-top--visible]="visible"
   (click)="backToTop.emit()">
-  <span>Back to top</span>
+  <app-icon
+    name="arrow-up"
+    size="20"
+    ariaLabel="Back to top" />
 </button>

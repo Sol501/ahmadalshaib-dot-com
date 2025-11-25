@@ -28,6 +28,13 @@
     margin: 0;
   }
 
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 1rem;
+  }
+
   &__chips li {
     padding: 0.35rem 0.75rem;
     border-radius: 999px;
@@ -35,5 +42,11 @@
     border: 1px solid var(--color-border);
     font-size: 0.9rem;
     color: var(--color-text-primary);
+  }
+
+  &__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
   }
 }

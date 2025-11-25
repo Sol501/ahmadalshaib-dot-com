@@ -4,12 +4,26 @@
   description="Tools, frameworks, and practices I rely on to ship dependable frontend"
 />
 <div class="skills-grid">
-  @for (group of skillGroups(); track group.id) {
-    <article class="skills-card">
-      <h3>{{ group.label }}</h3>
+  @for (group of skillGroups(); track group.id; let last = $last) {
+    <article class="skills-card" [class.skills-card--full]="last && (skillGroups().length % 2 === 1)">
+      <h3 class="skills-card__title">
+        @if (group.icon) {
+          <app-icon
+            [name]="group.icon"
+            size="18"
+            [ariaLabel]="group.label + ' icon'" />
+        }
+        <span>{{ group.label }}</span>
+      </h3>
       <ul class="skills-card__chips">
         @for (skill of group.skills; track skill.id) {
-          <li>{{ skill.name }}</li>
+          <li class="skills-card__chip">
+            <app-icon
+              [name]="skill.icon ?? 'check'"
+              size="14"
+              [ariaLabel]="skill.name + ' icon'" />
+            <span>{{ skill.name }}</span>
+          </li>
         }
       </ul>
     </article>

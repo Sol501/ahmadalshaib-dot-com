@@ -112,6 +112,7 @@
       color: var(--color-text-primary);
       font: inherit;
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      resize: none;
 
       &:focus {
         outline: none;

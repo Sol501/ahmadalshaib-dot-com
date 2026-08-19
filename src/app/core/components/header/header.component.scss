@@ -1,147 +1,183 @@
-.site-header {
+:host {
+  display: block;
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: color-mix(in srgb, var(--color-surface, #fff) 92%, transparent);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--color-border);
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.site-header {
+  border-bottom: 1px solid color-mix(in srgb, var(--color-border) 82%, transparent);
+  background: color-mix(in srgb, var(--color-bg) 90%, transparent);
+  backdrop-filter: blur(16px);
 
   &__inner {
-    max-width: var(--page-max-width, 1200px);
+    width: min(var(--page-max-width), calc(100% - 2.5rem));
+    min-height: 4rem;
     margin: 0 auto;
-    padding: 0.75rem 1.25rem;
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
   }
 
   &__brand {
-    position: relative;
-    font-size: 1.1rem;
-    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    flex: 0 0 auto;
+    min-width: 44px;
+    min-height: 44px;
     color: var(--color-text-primary);
+    font-weight: 720;
     text-decoration: none;
-    letter-spacing: 0.04em;
-    transition: color 0.2s ease;
+  }
 
-    &::after {
-      content: "";
-      width: 1px;
-      height: 100%;
-      background-color: var(--color-border);
-      position: absolute;
-      margin-inline-start: 0.5rem;
-    }
+  &__mark {
+    width: 2rem;
+    height: 2rem;
+    display: inline-grid;
+    place-items: center;
+    border-radius: 0.55rem;
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+    font-size: 0.7rem;
+    letter-spacing: -0.02em;
   }
 
   &__nav {
     display: flex;
-    gap: 1rem;
+    align-items: stretch;
+    justify-content: center;
+    gap: 0.15rem;
     flex: 1 1 auto;
-    align-items: center;
   }
 
   &__nav-link {
+    min-height: 44px;
+    padding: 0.7rem 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 0.55rem;
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    font-weight: 650;
     text-decoration: none;
-    font-size: 0.95rem;
-    color: var(--color-text-primary);
-    font-weight: 500;
-    transition: color 0.2s ease;
+
+    &:hover,
+    &:focus-visible,
+    &[aria-current='location'] {
+      color: var(--color-text-primary);
+      background: var(--color-accent-soft);
+    }
   }
 
-  &__nav-link:hover,
-  &__nav-link:focus-visible {
-    color: var(--color-accent, #38bdf8);
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 0 0 auto;
+  }
+
+  &__theme-toggle,
+  &__menu-toggle {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid var(--color-border);
+    border-radius: 0.65rem;
+    background: var(--color-surface);
+    color: var(--color-text-primary);
+    cursor: pointer;
   }
 
   &__theme-toggle {
-    border: 1px solid var(--color-border);
-    background: var(--color-surface);
-    color: var(--color-text-primary);
-    border-radius: 999px;
-    padding: 0.35rem 0.75rem;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+    display: grid;
+    place-items: center;
+    font-size: 1.2rem;
+  }
+
+  &__resume {
+    min-height: 44px;
+    padding: 0.65rem 1rem;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    min-width: 2.5rem;
+    border: 1px solid var(--color-accent);
+    border-radius: 0.65rem;
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+    font-size: 0.875rem;
+    font-weight: 720;
+    text-decoration: none;
 
     &:hover,
     &:focus-visible {
-      border-color: var(--color-accent);
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 18%, transparent);
-    }
-
-    &:active {
-      transform: translateY(1px);
+      background: var(--color-accent-hover);
+      color: var(--color-on-accent);
     }
   }
 
-  &__theme-icon {
-    line-height: 1;
-    width: 1.25rem;
-    height: 1.25rem;
-  }
+  &__menu-toggle {
+    display: none;
+    place-content: center;
+    gap: 4px;
 
-  &__cta {
-    padding: 0.5rem 1.25rem;
-    border-radius: 999px;
-    border: 1px solid var(--color-accent, #38bdf8);
-    color: var(--color-accent, #38bdf8);
-    text-decoration: none;
-    font-weight: 600;
+    span {
+      width: 18px;
+      height: 2px;
+      display: block;
+      border-radius: 999px;
+      background: currentColor;
+    }
   }
+}
 
-  @media (max-width: 768px) {
+@media (max-width: 880px) {
+  .site-header {
     &__inner {
-      flex-wrap: wrap;
+      width: min(var(--page-max-width), calc(100% - 1.5rem));
+      position: relative;
       gap: 0.75rem;
-      align-items: center;
     }
 
-    &__brand {
-      font-size: 1.25rem;
-
-      &::after {
-        display: none;
-      }
-    }
-
-    &__nav {
-      order: 3;
-      width: 100%;
-      justify-content: flex-start;
-      gap: 0.75rem;
-      overflow-x: auto;
-      padding-bottom: 0.35rem;
-      scrollbar-width: none;
-    }
-
-    &__nav::-webkit-scrollbar {
+    &__name {
       display: none;
     }
 
-    &__theme-toggle {
-      margin-left: auto;
+    &__nav {
+      position: absolute;
+      top: calc(100% + 1px);
+      left: 0;
+      right: 0;
+      padding: 0.65rem;
+      display: none;
+      flex-direction: column;
+      align-items: stretch;
+      border: 1px solid var(--color-border);
+      border-top: 0;
+      border-radius: 0 0 0.9rem 0.9rem;
+      background: var(--color-surface);
+      box-shadow: var(--shadow-lg);
+
+      &--open {
+        display: flex;
+      }
     }
 
-    &__cta {
-      margin-left: 0.25rem;
-      padding: 0.45rem 1rem;
+    &__nav-link {
+      padding-inline: 1rem;
+    }
+
+    &__actions {
+      margin-inline-start: auto;
+    }
+
+    &__menu-toggle {
+      display: grid;
     }
   }
+}
 
-  @media (max-width: 375px) {
-    &__brand {
-      width: 100%;
-      text-align: center;
-    }
-
-    &__cta {
-      margin-right: auto;
-    }
+@media (max-width: 360px) {
+  .site-header__resume {
+    padding-inline: 0.75rem;
   }
 }

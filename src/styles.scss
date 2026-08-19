@@ -1,6 +1,5 @@
 @use 'styles/variables' as *;
 
-/* Theme switches by toggling data-theme="dark" on html/body; respect the tokens above when styling. */
 *,
 *::before,
 *::after {
@@ -8,155 +7,145 @@
 }
 
 html {
-  font-family: 'Inter', 'Inter var', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background-color: $color-bg;
-  color: $color-text-primary;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  min-width: 320px;
   scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
+  background: $color-bg;
+  color: $color-text-primary;
+  font-family:
+    Inter,
+    ui-sans-serif,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+  text-size-adjust: 100%;
 }
 
 body {
-  margin: 0;
+  min-width: 320px;
   min-height: 100vh;
-  background-color: $color-bg;
-  color: $color-text-primary;
-  line-height: 1.6;
+  margin: 0;
   overflow-x: hidden;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, $color-accent 4%, transparent), transparent 28rem),
+    $color-bg;
+  color: $color-text-primary;
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: $color-accent;
+  text-underline-offset: 0.18em;
+  transition: color 160ms ease;
+
+  &:hover {
+    color: $color-accent-hover;
+  }
+}
+
+:focus-visible {
+  outline: 3px solid color-mix(in srgb, $color-accent 70%, white);
+  outline-offset: 3px;
 }
 
 h1,
 h2,
 h3,
-h4,
-h5,
-h6 {
-  color: $color-text-primary;
-  margin-top: 0;
-}
-
 p {
-  color: $color-text-secondary;
-  margin-top: 0;
+  overflow-wrap: break-word;
 }
 
-a {
-  color: $color-accent;
-  text-decoration: none;
-  transition: color 0.2s ease;
-
-  &:hover,
-  &:focus-visible {
-    color: $color-accent-hover;
-  }
-}
-
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  border-radius: 999px;
-  border: 1px solid $color-accent;
-  background-color: $color-accent;
-  color: $color-surface;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
-  cursor: pointer;
-
-  &:hover,
-  &:focus-visible {
-    background-color: $color-accent-hover;
-    border-color: $color-accent-hover;
-  }
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 .page-section {
-  width: min($page-max-width, calc(100% - 2rem));
+  display: block;
+  width: min($page-max-width, calc(100% - 2.5rem));
   margin: 0 auto;
-  min-height: 100vh;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-  padding: clamp(2.5rem, 8vw, 4rem) 0.5rem;
-  display: flex;
-  flex-direction: column;
+  padding: clamp(4.5rem, 9vw, 7.5rem) 0;
+  scroll-margin-top: 4.75rem;
+}
+
+.button {
+  min-height: 48px;
+  padding: 0.75rem 1.15rem;
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  position: relative;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  background-attachment: fixed;
-}
+  gap: 0.45rem;
+  border: 1px solid transparent;
+  border-radius: 0.7rem;
+  font-size: 0.925rem;
+  font-weight: 720;
+  line-height: 1.2;
+  text-decoration: none;
+  transition:
+    transform 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
 
-.section-placeholder {
-  padding: 1.5rem;
-  border-radius: 1rem;
-  border: 1px dashed $color-border;
-  background-color: $color-accent-soft;
-  color: $color-text-secondary;
-}
-
-/* Smooth theme transitions on key surfaces */
-.site-header,
-.project-card,
-.experience-card,
-.skills-card,
-.contact__content,
-.about__highlights,
-.about__image img,
-.section-heading,
-.section-heading__title,
-.section-heading__eyebrow,
-.section-heading__description {
-  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-.theme-ripple {
-  position: fixed;
-  border-radius: 50%;
-  background: var(--color-accent);
-  pointer-events: none;
-  mix-blend-mode: normal;
-  opacity: 0.55;
-  transform: scale(0);
-  animation: theme-ripple 0.9s ease-out forwards;
-  z-index: 999;
-
-  &--light {
-    background: color-mix(in srgb, var(--color-accent) 45%, var(--color-surface) 55%);
+  &:hover {
+    transform: translateY(-1px);
   }
 
-  &--dark {
-    background: var(--color-accent);
+  &--primary {
+    background: $color-accent;
+    color: var(--color-on-accent);
+
+    &:hover,
+    &:focus-visible {
+      background: $color-accent-hover;
+      color: var(--color-on-accent);
+    }
   }
 
-  @keyframes theme-ripple {
-    to {
-      transform: scale(2);
-      opacity: 0;
+  &--secondary {
+    border-color: $color-border;
+    background: $color-surface;
+    color: $color-text-primary;
+
+    &:hover,
+    &:focus-visible {
+      border-color: $color-accent;
+      color: $color-accent;
     }
   }
 }
 
-
-@media (max-width: 768px) {
-  html {
-    scroll-snap-type: unset;
-  }
-
+@media (max-width: 680px) {
   .page-section {
-    width: calc(100% - 1.5rem);
-    min-height: unset;
-    display: block;
-    padding: 0 0.5rem;
-    margin: 0 auto $page-section-spacing;
+    width: min($page-max-width, calc(100% - 1.5rem));
+    padding: 4rem 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 
-  h1 {
-    font-size: clamp(1.8rem, 7vw, 2.6rem);
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

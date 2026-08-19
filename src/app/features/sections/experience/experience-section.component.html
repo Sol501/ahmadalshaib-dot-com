@@ -1,31 +1,36 @@
 <app-section-heading
   title="Experience"
-  eyebrow="Career"
-  description="Enterprise frontend roles focused on Angular performance, testing, and self-serve platforms"
+  eyebrow="Employment"
+  description="Production frontend work across merchant, operations, and banking platforms."
 />
+
 <div class="experience-list">
-  @for (experience of experiences(); track experience.id) {
-    <article class="experience-card">
-      <header>
-        <p class="experience-card__role">{{ experience.role }}</p>
-        <p class="experience-card__company">{{ experience.company }}</p>
-        <p class="experience-card__meta">
-          <span>{{ experience.location }}</span>
-          <span>•</span>
-          <span>{{ experience.startDate }} - {{ experience.endDate ?? 'Present' }}</span>
-        </p>
+  @for (experience of experiences; track experience.id) {
+    <article class="experience">
+      <header class="experience__header">
+        <div>
+          <p class="experience__role">{{ experience.role }}</p>
+          <h3>{{ experience.company }}</h3>
+        </div>
+        <div class="experience__meta">
+          <p>{{ experience.dates }}</p>
+          <p>{{ experience.location }}</p>
+        </div>
       </header>
-      <ul>
-        @for (achievement of experience.achievements; track achievement) {
-          <li>{{ achievement }}</li>
+
+      <p class="experience__summary">{{ experience.summary }}</p>
+
+      <ul class="experience__contributions">
+        @for (contribution of experience.contributions; track contribution) {
+          <li>{{ contribution }}</li>
         }
       </ul>
-      @if (experience.techFocus?.length) {
-        <p class="experience-card__tech">{{ experience.techFocus | listJoin }}</p>
-      }
+
+      <ul class="experience__technologies" aria-label="Technologies used">
+        @for (technology of experience.technologies; track technology) {
+          <li>{{ technology }}</li>
+        }
+      </ul>
     </article>
-  }
-  @empty {
-    <p class="section-placeholder">Experience entries will be populated soon.</p>
   }
 </div>

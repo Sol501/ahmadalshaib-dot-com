@@ -1,31 +1,11 @@
 <app-section-heading
   title="About"
-  eyebrow="Background"
-  description="Frontend engineer focused on reliable Angular delivery"
+  eyebrow="Engineering approach"
+  description="Production Angular systems, modernized with care."
 />
-<div class="about">
-  <div class="about__content">
-    <div class="about__image">
-      <img src="assets/images/profileSolo.png" alt="Portrait of Ahmad Alshaib" loading="lazy" />
-    </div>
-    <div class="about__body">
-      <p>
-        I'm Ahmad Alshaib, a Damascus-based Frontend Engineer with 4+ years of experience delivering
-        Angular and TypeScript applications for enterprise teams. I specialize in performance tuning,
-        accessibility, and testable architectures, helping dashboards load 40-50% faster, cutting regression
-        bugs by ~90%, and keeping complex self-serve portals maintainable as they scale.
-      </p>
-      <p>
-        I currently build merchant-facing tools and internal admin surfaces at Toters Delivery, where my
-        work spans Angular 10-19, Nx monorepos, REST/WebSocket integrations, and Jest/ng-mocks test suites.
-        I collaborate closely with design, product, and ops partners across MENA, communicate fluently in
-        Arabic and English (IELTS 7.5), and am open to remote roles or relocation.
-      </p>
-      <ul class="about__highlights">
-        <li>Shipped platforms serving ~2,000 merchants and 200 internal users.</li>
-        <li>Contributed to paid Highlights that increased revenue by roughly 5%.</li>
-        <li>Led AngularJS → Angular 19 migrations and standardized Nx/shared libraries.</li>
-      </ul>
-    </div>
-  </div>
+
+<div class="about__copy">
+  @for (paragraph of content.about; track paragraph) {
+    <p>{{ paragraph }}</p>
+  }
 </div>

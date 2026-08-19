@@ -1,36 +1,40 @@
 <app-section-heading
-  title="Projects"
-  eyebrow="Selected work"
-  description="Case studies and dashboards that moved metrics"
+  title="Selected Work"
+  eyebrow="Case studies"
+  description="Representative Angular work across merchant, advertising, and administration platforms."
 />
-<div class="projects-grid">
-  @for (project of projects(); track project.id) {
-    <article class="project-card">
-      <header>
-        <p class="project-card__eyebrow">Featured</p>
-        <h3 class="project-card__title">{{ project.title }}</h3>
-        <p class="project-card__description">{{ project.description }}</p>
-      </header>
-      <p class="project-card__stack">{{ project.techStack | listJoin }}</p>
-      @if (project.links?.length) {
-        <div class="project-card__links">
-          @for (link of project.links; track link.label) {
-            <a class="project-card__link" [attr.href]="link.url" target="_blank" rel="noreferrer">
-              {{ link.label }}
-            </a>
-          }
+
+<div class="work-list">
+  @for (study of caseStudies; track study.id; let index = $index) {
+    <article class="work">
+      <header class="work__header">
+        <p class="work__number" aria-hidden="true">0{{ index + 1 }}</p>
+        <div>
+          <p class="work__context">{{ study.context }}</p>
+          <h3>{{ study.title }}</h3>
         </div>
-      }
-      @if (project?.highlights?.length) {
-        <ul class="project-card__highlights">
-          @for (item of project.highlights; track item) {
-            <li>{{ item }}</li>
+      </header>
+
+      <div class="work__body">
+        <p class="work__description">{{ study.description }}</p>
+        <ul class="work__contributions">
+          @for (contribution of study.contributions; track contribution) {
+            <li>{{ contribution }}</li>
           }
         </ul>
-      }
+
+        <ul class="work__technologies" aria-label="Technologies used">
+          @for (technology of study.technologies; track technology) {
+            <li>{{ technology }}</li>
+          }
+        </ul>
+
+        @if (study.link; as link) {
+          <a class="work__link" [href]="link.url" target="_blank" rel="noopener noreferrer">
+            {{ link.label }} <span aria-hidden="true">↗</span>
+          </a>
+        }
+      </div>
     </article>
-  }
-  @empty {
-    <p class="section-placeholder">Projects will be added soon.</p>
   }
 </div>

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f7f8fb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b101b" media="(prefers-color-scheme: dark)" />
+    <title>Page not found | Ahmad Alshaib</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          sans-serif;
+        --background: #f7f8fb;
+        --surface: #ffffff;
+        --text: #101828;
+        --muted: #475467;
+        --border: #d8dee9;
+        --accent: #1d4ed8;
+        --accent-strong: #173ea7;
+        --on-accent: #ffffff;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --background: #0b101b;
+          --surface: #111827;
+          --text: #f1f4f8;
+          --muted: #cbd5e1;
+          --border: #344054;
+          --accent: #8ab4ff;
+          --accent-strong: #b5ceff;
+          --on-accent: #07101f;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        padding: 1.5rem;
+        color: var(--text);
+        background: var(--background);
+      }
+
+      main {
+        width: min(100%, 42rem);
+        padding: clamp(2rem, 6vw, 4rem);
+        border: 1px solid var(--border);
+        border-radius: 1.25rem;
+        background: var(--surface);
+        box-shadow: 0 1.5rem 4rem rgb(15 23 42 / 10%);
+      }
+
+      .eyebrow {
+        margin: 0 0 1rem;
+        color: var(--accent);
+        font-size: 0.8125rem;
+        font-weight: 750;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2.25rem, 8vw, 4.5rem);
+        line-height: 0.98;
+        letter-spacing: -0.055em;
+      }
+
+      p:not(.eyebrow) {
+        max-width: 35rem;
+        margin: 1.5rem 0 2rem;
+        color: var(--muted);
+        font-size: clamp(1rem, 2.5vw, 1.125rem);
+        line-height: 1.65;
+      }
+
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+
+      a {
+        min-height: 2.75rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.7rem 1rem;
+        border: 1px solid var(--border);
+        border-radius: 0.6rem;
+        color: var(--text);
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      a:first-child {
+        border-color: var(--accent);
+        color: var(--on-accent);
+        background: var(--accent);
+      }
+
+      a:hover {
+        border-color: var(--accent-strong);
+        color: var(--accent-strong);
+      }
+
+      a:first-child:hover {
+        color: var(--on-accent);
+        background: var(--accent-strong);
+      }
+
+      a:focus-visible {
+        outline: 3px solid var(--accent);
+        outline-offset: 3px;
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        a {
+          transition:
+            color 150ms ease,
+            border-color 150ms ease,
+            background-color 150ms ease;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">404 · Page not found</p>
+      <h1>That route does not exist.</h1>
+      <p>
+        The page may have moved, or the address may be incorrect. Return to Ahmad Alshaib’s
+        portfolio or go directly to the contact section.
+      </p>
+      <nav aria-label="Recovery links">
+        <a href="/">Back to portfolio</a>
+        <a href="/#contact">Contact Ahmad</a>
+      </nav>
+    </main>
+  </body>
+</html>

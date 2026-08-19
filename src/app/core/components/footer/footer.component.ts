@@ -1,12 +1,12 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
+
+import { PORTFOLIO_CONTENT } from '../../content/portfolio-content';
 
 @Component({
   selector: 'app-footer',
-  standalone: true,
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FooterComponent {
-  readonly currentYear = new Date().getFullYear();
+  readonly content = PORTFOLIO_CONTENT;
 }

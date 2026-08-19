@@ -1,14 +1,106 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Ahmad Alshaib</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" sizes="192x192" type="image/png" href="/favicon.png">
-  <link rel="shortcut icon" href="/favicon.png">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>Ahmad Alshaib | Senior Frontend Engineer &amp; Angular Specialist</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Senior Frontend Engineer and Angular specialist modernizing production applications. In Dubai, UAE from 12 September 2026 and available for opportunities."
+    />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f7f8fb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b101b" media="(prefers-color-scheme: dark)" />
+
+    <link rel="canonical" href="https://ahmadalshaib.com/" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <script>
+      (() => {
+        let theme;
+
+        try {
+          const storedTheme = localStorage.getItem('theme-preference');
+          if (storedTheme === 'light' || storedTheme === 'dark') {
+            theme = storedTheme;
+          }
+        } catch {
+          // Storage can be unavailable in hardened browser contexts.
+        }
+
+        theme ??= window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+      })();
+    </script>
+
+    <meta
+      property="og:title"
+      content="Ahmad Alshaib | Senior Frontend Engineer &amp; Angular Specialist"
+    />
+    <meta
+      property="og:description"
+      content="Senior Frontend Engineer and Angular specialist modernizing production applications. In Dubai, UAE from 12 September 2026 and available for opportunities."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ahmadalshaib.com/" />
+    <meta property="og:site_name" content="Ahmad Alshaib" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://ahmadalshaib.com/og-card.png" />
+    <meta property="og:image:secure_url" content="https://ahmadalshaib.com/og-card.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Ahmad Alshaib, Senior Frontend Engineer and Angular Specialist"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Ahmad Alshaib | Senior Frontend Engineer &amp; Angular Specialist"
+    />
+    <meta
+      name="twitter:description"
+      content="Senior Frontend Engineer and Angular specialist modernizing production applications. In Dubai, UAE from 12 September 2026 and available for opportunities."
+    />
+    <meta name="twitter:image" content="https://ahmadalshaib.com/og-card.png" />
+    <meta
+      name="twitter:image:alt"
+      content="Ahmad Alshaib, Senior Frontend Engineer and Angular Specialist"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "@id": "https://ahmadalshaib.com/#person",
+        "name": "Ahmad Alshaib",
+        "url": "https://ahmadalshaib.com/",
+        "image": "https://ahmadalshaib.com/assets/images/profile.webp",
+        "jobTitle": "Senior Frontend Engineer",
+        "description": "Senior Frontend Engineer and Angular specialist modernizing production applications. In Dubai, UAE from 12 September 2026 and available for opportunities.",
+        "email": "ahmad.alshaib@outlook.com",
+        "telephone": "+971524237060",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Toters Delivery App"
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Arab International University"
+        },
+        "sameAs": ["https://linkedin.com/in/ahmad-alshaib/", "https://github.com/Sol501"]
+      }
+    </script>
+  </head>
+  <body>
+    <app-root></app-root>
+  </body>
 </html>

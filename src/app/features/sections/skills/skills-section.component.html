@@ -1,34 +1,18 @@
 <app-section-heading
   title="Skills"
-  eyebrow="Capabilities"
-  description="Tools, frameworks, and practices I rely on to ship dependable frontend"
+  eyebrow="Technical focus"
+  description="Verified technologies and practices used to build, modernize, and support production frontend systems."
 />
-<div class="skills-grid">
-  @for (group of skillGroups(); track group.id; let last = $last) {
-    <article class="skills-card" [class.skills-card--full]="last && (skillGroups().length % 2 === 1)">
-      <h3 class="skills-card__title">
-        @if (group.icon) {
-          <app-icon
-            [name]="group.icon"
-            size="18"
-            [ariaLabel]="group.label + ' icon'" />
-        }
-        <span>{{ group.label }}</span>
-      </h3>
-      <ul class="skills-card__chips">
-        @for (skill of group.skills; track skill.id) {
-          <li class="skills-card__chip">
-            <app-icon
-              [name]="skill.icon ?? 'check'"
-              size="14"
-              [ariaLabel]="skill.name + ' icon'" />
-            <span>{{ skill.name }}</span>
-          </li>
+
+<div class="skills-list">
+  @for (group of skillGroups; track group.id) {
+    <section class="skills-group" [class.skills-group--primary]="group.primary">
+      <h3>{{ group.title }}</h3>
+      <ul>
+        @for (skill of group.skills; track skill) {
+          <li [class.skills-group__angular]="skill === 'Angular'">{{ skill }}</li>
         }
       </ul>
-    </article>
-  }
-  @empty {
-    <p class="section-placeholder">Skill groups will be curated soon.</p>
+    </section>
   }
 </div>

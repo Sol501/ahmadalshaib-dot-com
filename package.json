@@ -6,7 +6,12 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "test:ci": "ng test --watch=false",
+    "lint": "ng lint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run lint && npm run format:check && npm run test:ci && npm run build"
   },
   "prettier": {
     "printWidth": 100,
@@ -20,29 +25,35 @@
       }
     ]
   },
+  "engines": {
+    "node": "24.19.0",
+    "npm": "11.17.0"
+  },
+  "packageManager": "npm@11.17.0",
   "private": true,
   "dependencies": {
-    "@angular/common": "^20.3.0",
-    "@angular/compiler": "^20.3.0",
-    "@angular/core": "^20.3.0",
-    "@angular/forms": "^20.3.0",
-    "@angular/platform-browser": "^20.3.0",
-    "@angular/router": "^20.3.0",
-    "rxjs": "~7.8.0",
-    "tslib": "^2.3.0"
+    "@angular/common": "22.1.2",
+    "@angular/compiler": "22.1.2",
+    "@angular/core": "22.1.2",
+    "@angular/platform-browser": "22.1.2",
+    "@angular/platform-server": "22.1.2",
+    "@angular/router": "22.1.2",
+    "@angular/ssr": "22.1.4",
+    "rxjs": "7.8.2",
+    "tslib": "2.8.1"
   },
   "devDependencies": {
-    "@angular/build": "^20.3.10",
-    "@angular/cli": "^20.3.10",
-    "@angular/compiler-cli": "^20.3.0",
-    "@types/jasmine": "~5.1.0",
-    "@types/node": "^20.17.19",
-    "jasmine-core": "~5.9.0",
-    "karma": "~6.4.0",
-    "karma-chrome-launcher": "~3.2.0",
-    "karma-coverage": "~2.2.0",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.9.2"
+    "@angular/build": "22.1.4",
+    "@angular/cli": "22.1.4",
+    "@angular/compiler-cli": "22.1.2",
+    "@eslint/js": "10.0.1",
+    "angular-eslint": "22.1.0",
+    "baseline-browser-mapping": "2.11.15",
+    "eslint": "10.8.1",
+    "jsdom": "30.0.1",
+    "prettier": "3.9.6",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.67.0",
+    "vitest": "4.1.11"
   }
 }

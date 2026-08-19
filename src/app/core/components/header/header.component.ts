@@ -1,40 +1,81 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { afterNextRender, Component, computed, DestroyRef, inject, signal } from '@angular/core';
 
-import { NavigationLink } from '../../models/navigation-link.model';
-import { ScrollAnchorDirective } from '../../../shared/directives/scroll-anchor/scroll-anchor.directive';
+import { PORTFOLIO_CONTENT } from '../../content/portfolio-content';
 import { ThemeService } from '../../services/theme.service';
-import { IconComponent } from '../../../shared/components/icon/icon.component';
-import { TooltipDirective } from '../../../shared/directives/tooltip/tooltip.directive';
+
+interface NavigationItem {
+  readonly label: string;
+  readonly targetId: 'about' | 'experience' | 'work' | 'skills' | 'contact';
+}
 
 @Component({
   selector: 'app-header',
-  standalone: true,
-  imports: [ScrollAnchorDirective, IconComponent, TooltipDirective],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '(document:keydown.escape)': 'closeMenu()',
+  },
 })
 export class HeaderComponent {
-  private readonly _themeService = inject(ThemeService);
+  private readonly themeService = inject(ThemeService);
+  private readonly document = inject(DOCUMENT);
+  private readonly destroyRef = inject(DestroyRef);
 
-  readonly links = signal<readonly NavigationLink[]>([
-    { id: 'nav-hero', label: 'Hero', targetId: 'hero' },
-    { id: 'nav-about', label: 'About', targetId: 'about' },
-    { id: 'nav-experience', label: 'Experience', targetId: 'experience' },
-    { id: 'nav-projects', label: 'Projects', targetId: 'projects' },
-    { id: 'nav-skills', label: 'Skills', targetId: 'skills' },
-    { id: 'nav-contact', label: 'Contact', targetId: 'contact' },
-  ]);
-
-  readonly theme = this._themeService.theme;
+  readonly content = PORTFOLIO_CONTENT;
+  readonly links: readonly NavigationItem[] = [
+    { label: 'About', targetId: 'about' },
+    { label: 'Experience', targetId: 'experience' },
+    { label: 'Work', targetId: 'work' },
+    { label: 'Skills', targetId: 'skills' },
+    { label: 'Contact', targetId: 'contact' },
+  ];
+  readonly mobileMenuOpen = signal(false);
+  readonly activeSection = signal<NavigationItem['targetId'] | null>(null);
+  readonly theme = this.themeService.theme;
   readonly themeLabel = computed(() =>
-    this.theme() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'
+    this.theme() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme',
   );
-  readonly themeIcon = computed(() => (this.theme() === 'dark' ? 'sun' : 'moon'));
 
-  toggleTheme(event: MouseEvent): void {
-    const nextTheme = this.theme() === 'light' ? 'dark' : 'light';
-    this._themeService.triggerRipple(nextTheme, event.clientX, event.clientY);
-    this._themeService.setTheme(nextTheme);
+  constructor() {
+    afterNextRender(() => {
+      if (!('IntersectionObserver' in globalThis)) {
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((first, second) => second.intersectionRatio - first.intersectionRatio)[0];
+
+          if (visible?.target.id) {
+            this.activeSection.set(visible.target.id as NavigationItem['targetId']);
+          }
+        },
+        { rootMargin: '-18% 0px -65% 0px', threshold: [0, 0.15, 0.4] },
+      );
+
+      for (const link of this.links) {
+        const section = this.document.getElementById(link.targetId);
+        if (section) {
+          observer.observe(section);
+        }
+      }
+
+      this.destroyRef.onDestroy(() => observer.disconnect());
+    });
+  }
+
+  toggleMenu(): void {
+    this.mobileMenuOpen.update((open) => !open);
+  }
+
+  closeMenu(): void {
+    this.mobileMenuOpen.set(false);
+  }
+
+  toggleTheme(): void {
+    this.themeService.toggle();
   }
 }

@@ -1,11 +1,11 @@
 <div class="section-heading">
-  @if (eyebrow; as label) {
+  @if (eyebrow(); as label) {
     <p class="section-heading__eyebrow">{{ label }}</p>
   }
   <div>
-    <h2 class="section-heading__title">{{ title }}</h2>
-    @if (description) {
-      <p class="section-heading__description">{{ description }}</p>
+    <h2 class="section-heading__title">{{ title() }}</h2>
+    @if (description(); as copy) {
+      <p class="section-heading__description">{{ copy }}</p>
     }
   </div>
 </div>

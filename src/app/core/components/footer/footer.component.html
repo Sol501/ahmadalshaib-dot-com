@@ -1,6 +1,12 @@
 <footer class="site-footer">
   <div class="site-footer__inner">
-    <p>&copy; {{ currentYear }} Ahmad Alshaib. All rights reserved.</p>
-    <a class="site-footer__email" href="mailto:ahmad.alshaib@outlook.com">ahmad.alshaib@outlook.com</a>
+    <p>&copy; {{ content.identity.name }}. Built for speed, clarity, and access.</p>
+    <nav class="site-footer__links" aria-label="Footer navigation">
+      <a [href]="content.contact.emailHref">Email</a>
+      <a [href]="content.contact.linkedin.url" target="_blank" rel="noopener noreferrer"
+        >LinkedIn</a
+      >
+      <a href="#top">Back to top ↑</a>
+    </nav>
   </div>
 </footer>

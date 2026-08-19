@@ -1,10 +1,12 @@
-<app-hero-section />
-<app-about-section />
-<app-experience-section />
-<app-projects-section />
-<app-skills-section />
-<app-contact-section />
-
-<app-back-to-top
-  [visible]="showBackToTop()"
-  (backToTop)="scrollToTop()" />
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<app-header id="top" />
+<main id="main-content" tabindex="-1">
+  <app-hero-section />
+  <app-about-section />
+  <app-experience-section />
+  <app-projects-section />
+  <app-skills-section />
+  <app-education-section />
+  <app-contact-section />
+</main>
+<app-footer />

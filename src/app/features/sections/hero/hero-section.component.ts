@@ -1,17 +1,18 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
+import { Component } from '@angular/core';
 
-import { ScrollAnchorDirective } from '../../../shared/directives/scroll-anchor/scroll-anchor.directive';
+import { PORTFOLIO_CONTENT } from '../../../core/content/portfolio-content';
 
 @Component({
   selector: 'app-hero-section',
-  standalone: true,
-  imports: [ScrollAnchorDirective],
+  imports: [NgOptimizedImage],
   templateUrl: './hero-section.component.html',
   styleUrl: './hero-section.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     id: 'hero',
-    class: 'page-section hero-section'
-  }
+    class: 'page-section hero-section',
+  },
 })
-export class HeroSectionComponent {}
+export class HeroSectionComponent {
+  readonly content = PORTFOLIO_CONTENT;
+}

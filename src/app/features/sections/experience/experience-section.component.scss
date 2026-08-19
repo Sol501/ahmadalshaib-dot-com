@@ -1,48 +1,100 @@
 .experience-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  border-top: 1px solid var(--color-border);
 }
 
-.experience-card {
-  padding: 1.25rem;
-  border-radius: 1rem;
-  border: 1px solid var(--color-border);
-  background-color: var(--color-surface);
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+.experience {
+  display: grid;
+  grid-template-columns: minmax(13rem, 0.75fr) minmax(0, 1.25fr);
+  gap: 1rem clamp(2rem, 6vw, 5rem);
+  padding-block: clamp(2rem, 5vw, 3.5rem);
+  border-bottom: 1px solid var(--color-border);
+
+  &__header {
+    grid-row: 1 / span 3;
+
+    h3 {
+      margin: 0.25rem 0 0;
+      color: var(--color-text-primary);
+      font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+    }
+  }
 
   &__role {
     margin: 0;
-    font-weight: 600;
+    color: var(--color-accent);
+    font-size: 0.78rem;
+    font-weight: 750;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  &__meta {
+    margin-top: 1rem;
+
+    p {
+      margin: 0;
+      color: var(--color-text-secondary);
+      font-size: 0.9rem;
+    }
+
+    p + p {
+      margin-top: 0.25rem;
+    }
+  }
+
+  &__summary {
+    margin: 0;
     color: var(--color-text-primary);
+    font-size: 1.05rem;
+    font-weight: 620;
+    line-height: 1.65;
   }
-  &__company,
-  &__meta {
-    margin: 0.25rem 0 0;
-    color: var(--color-text-secondary);
-  }
-  &__meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
-  &__tech {
-    margin: 1rem 0 0;
-    font-size: 0.9rem;
-    color: var(--color-text-secondary);
-  }
-  & ul {
-    margin: 1rem 0 0;
-    padding-inline-start: 1.5rem;
+
+  &__contributions {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding-inline-start: 1.2rem;
     color: var(--color-text-secondary);
 
     li {
-      position: relative;
-      padding-left: 0.5rem;
+      padding-inline-start: 0.35rem;
+      line-height: 1.65;
+    }
 
-      &::marker {
-        color: var(--color-accent);
-      }
+    li::marker {
+      color: var(--color-accent);
+    }
+  }
+
+  &__technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem 0.8rem;
+    margin: 0;
+    padding: 0;
+    color: var(--color-text-secondary);
+    font-size: 0.78rem;
+    font-weight: 700;
+    list-style: none;
+
+    li:not(:last-child)::after {
+      margin-inline-start: 0.8rem;
+      color: var(--color-border);
+      content: '/';
+    }
+  }
+}
+
+@media (max-width: 46rem) {
+  .experience {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+
+    &__header {
+      grid-row: auto;
     }
   }
 }

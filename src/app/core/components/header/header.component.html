@@ -1,31 +1,61 @@
 <header class="site-header">
   <div class="site-header__inner">
-    <a class="site-header__brand" href="/" aria-label="Ahmad Alshaib home">
-      <span>Ahmad Alshaib</span>
+    <a class="site-header__brand" href="#top" aria-label="Ahmad Alshaib — back to top">
+      <span class="site-header__mark" aria-hidden="true">AA</span>
+      <span class="site-header__name">Ahmad Alshaib</span>
     </a>
-    <nav class="site-header__nav" aria-label="Primary">
-      @for (link of links(); track link.id) {
+
+    <nav
+      id="primary-navigation"
+      class="site-header__nav"
+      [class.site-header__nav--open]="mobileMenuOpen()"
+      aria-label="Primary navigation"
+    >
+      @for (link of links; track link.targetId) {
         <a
           class="site-header__nav-link"
-          [appScrollAnchor]="link.targetId"
           [attr.href]="'#' + link.targetId"
+          [attr.aria-current]="activeSection() === link.targetId ? 'location' : null"
+          (click)="closeMenu()"
         >
           {{ link.label }}
         </a>
       }
     </nav>
-    <button
-      type="button"
-      [appTooltip]="themeLabel()"
-      class="site-header__theme-toggle"
-      [attr.aria-label]="themeLabel()"
-      (click)="toggleTheme($event)"
-    >
-      <app-icon
-        class="site-header__theme-icon"
-        [name]="themeIcon()"
-        size="20" />
-    </button>
-    <a class="site-header__cta" appScrollAnchor="contact" href="#contact">Let's talk</a>
+
+    <div class="site-header__actions">
+      <button
+        type="button"
+        class="site-header__theme-toggle"
+        [attr.aria-label]="themeLabel()"
+        [attr.title]="themeLabel()"
+        (click)="toggleTheme()"
+      >
+        <span aria-hidden="true">{{ theme() === 'dark' ? '☀' : '◐' }}</span>
+      </button>
+
+      @if (content.resume.available) {
+        <a
+          class="site-header__resume"
+          [href]="content.resume.path"
+          download="Ahmad-Alshaib-Senior-Frontend-Engineer-Resume.pdf"
+        >
+          Résumé
+        </a>
+      }
+
+      <button
+        type="button"
+        class="site-header__menu-toggle"
+        aria-controls="primary-navigation"
+        [attr.aria-expanded]="mobileMenuOpen()"
+        [attr.aria-label]="mobileMenuOpen() ? 'Close navigation menu' : 'Open navigation menu'"
+        (click)="toggleMenu()"
+      >
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+    </div>
   </div>
 </header>

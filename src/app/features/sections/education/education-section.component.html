@@ -1,0 +1,31 @@
+<app-section-heading
+  title="Education & Languages"
+  eyebrow="Foundation"
+  description="Academic background and working languages."
+/>
+
+<div class="credentials">
+  <article class="credentials__education">
+    <p class="credentials__label">Education</p>
+    <h3>{{ education.degree }}</h3>
+    <p>{{ education.institution }}</p>
+    <p>{{ education.graduation }}</p>
+  </article>
+
+  <section class="credentials__languages" aria-labelledby="languages-title">
+    <p id="languages-title" class="credentials__label">Languages</p>
+    <dl>
+      @for (item of languages; track item.language) {
+        <div>
+          <dt>{{ item.language }}</dt>
+          <dd>
+            {{ item.proficiency }}
+            @if (item.credential; as credential) {
+              <span>· {{ credential }}</span>
+            }
+          </dd>
+        </div>
+      }
+    </dl>
+  </section>
+</div>

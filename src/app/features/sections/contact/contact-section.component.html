@@ -1,84 +1,48 @@
 <app-section-heading
   title="Contact"
-  eyebrow="Get in touch"
-  description="Let's talk about frontend roles, Angular projects, or cross-team collaboration"
+  eyebrow="Start a conversation"
+  description="Hiring for a senior frontend or Angular role in the UAE? Let’s discuss the product, team, and engineering challenges."
 />
-<div class="contact__content">
-  <div class="contact__copy">
+
+<div class="contact">
+  <div class="contact__intro">
+    <p class="contact__lead">{{ content.availability.recruiterMessage }}</p>
     <p>
-      I'm currently based in Damascus and available for remote roles or relocation.
-      If you need someone to stabilize an Angular codebase, speed up
-      dashboards, or tighten your testing pipeline, I'm happy to chat.
+      I am especially interested in production Angular work where architecture, performance,
+      testing, and a thoughtful user experience all matter. Share the role, location, and hiring
+      timeline and I’ll respond directly.
     </p>
-    <ul class="contact__meta">
-      <li>4+ years in enterprise Angular, Nx, Jest, and performance profiling.</li>
-      <li>Bilingual: Arabic (native) · English (IELTS 7.5).</li>
-      <li>Preferred contact: email response within 1-2 business days.</li>
-    </ul>
-    <a
-      class="contact__email"
-      appTooltip="Send me an email directly"
-      href="mailto:ahmad.alshaib@outlook.com">
-      ahmad.alshaib@outlook.com
-    </a>
-    <p class="contact__note">
-      Please include project context, timelines, and whether the role is remote or relocation-backed.
-    </p>
-    <app-social-links [links]="socialLinks" />
   </div>
 
-  <form class="contact__form" [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
-    @if (submitMessage()) {
-      <div
-        class="contact__notice"
-        [class.contact__notice--error]="submitState() === 'error'"
-        [class.contact__notice--success]="submitState() === 'success'"
-      >
-        {{ submitMessage() }}
-      </div>
-    }
+  <div class="contact__details" aria-label="Direct contact details">
+    <a class="contact__detail" [href]="content.contact.emailHref">
+      <span class="contact__label">Email</span>
+      <span>{{ content.contact.email }}</span>
+    </a>
+    <a class="contact__detail" [href]="content.contact.phoneHref">
+      <span class="contact__label">Phone · {{ content.contact.phoneAvailability }}</span>
+      <span>{{ content.contact.phone }}</span>
+    </a>
+  </div>
 
-    <label class="contact__field">
-      <span>Full name</span>
-      <input
-        type="text"
-        formControlName="fullName"
-        placeholder="Your name"
-        [class.contact__input--invalid]="isFieldInvalid('fullName')"
-      />
-      @if (isFieldInvalid('fullName')) {
-        <small>Please enter at least 2 characters.</small>
-      }
-    </label>
-
-    <label class="contact__field">
-      <span>Email</span>
-      <input
-        type="email"
-        formControlName="email"
-        placeholder="you@company.com"
-        [class.contact__input--invalid]="isFieldInvalid('email')"
-      />
-      @if (isFieldInvalid('email')) {
-        <small>Provide a valid email address so I can respond.</small>
-      }
-    </label>
-
-    <label class="contact__field">
-      <span>Message</span>
-      <textarea
-        rows="5"
-        formControlName="message"
-        placeholder="Project scope, timeline, or questions..."
-        [class.contact__input--invalid]="isFieldInvalid('message')"
-      ></textarea>
-      @if (isFieldInvalid('message')) {
-        <small>Share a short brief (10+ characters) so I understand your ask.</small>
-      }
-    </label>
-
-    <button type="submit" class="btn-primary" [disabled]="isSubmitting()">
-      @if (isSubmitting()) { Sending… } @else { Send message }
-    </button>
-  </form>
+  <div class="contact__actions" aria-label="Contact and profile links">
+    <a class="button button--primary" [href]="content.contact.emailHref"> Email Ahmad </a>
+    <a class="button button--secondary" [href]="content.resume.path" download> Download Résumé </a>
+    <a
+      class="contact__link"
+      [href]="content.contact.linkedin.url"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      LinkedIn <span aria-hidden="true">↗</span>
+    </a>
+    <a
+      class="contact__link"
+      [href]="content.contact.github.url"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      GitHub <span aria-hidden="true">↗</span>
+    </a>
+  </div>
 </div>

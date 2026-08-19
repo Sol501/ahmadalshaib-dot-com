@@ -9,7 +9,7 @@ describe('PORTFOLIO_CONTENT', () => {
     expect(PORTFOLIO_CONTENT.contact.github.url).toMatch(/^https:\/\//);
     expect(PORTFOLIO_CONTENT.resume).toMatchObject({
       available: true,
-      path: '/Ahmad-Alshaib-Senior-Frontend-Engineer-Resume.pdf',
+      path: '/Ahmad-Alshaib-Web-Engineer-Resume.pdf',
     });
   });
 
@@ -21,6 +21,12 @@ describe('PORTFOLIO_CONTENT', () => {
     ]);
     expect(PORTFOLIO_CONTENT.caseStudies[1].contributions.join(' ')).toContain('associated with');
     expect(PORTFOLIO_CONTENT.caseStudies[2].link?.url).toBe('https://www.syrianmanufacturing.com/');
+  });
+
+  it('uses the verified Toters job title', () => {
+    expect(PORTFOLIO_CONTENT.experience.find(({ id }) => id === 'toters')?.role).toBe(
+      'Web Engineer',
+    );
   });
 
   it('includes the verified education and language details', () => {

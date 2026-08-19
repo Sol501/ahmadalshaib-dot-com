@@ -25,7 +25,7 @@ describe('HeaderComponent', () => {
       '#skills',
       '#contact',
     ]);
-    expect(resume?.getAttribute('href')).toBe('/Ahmad-Alshaib-Senior-Frontend-Engineer-Resume.pdf');
+    expect(resume?.getAttribute('href')).toBe('/Ahmad-Alshaib-Web-Engineer-Resume.pdf');
     expect(resume?.hasAttribute('download')).toBe(true);
   });
 

@@ -1,6 +1,6 @@
 # ahmadalshaib.com
 
-The source for [Ahmad Alshaib’s portfolio](https://ahmadalshaib.com/), focused on senior frontend engineering, production Angular modernization, performance, testing, and maintainability.
+The source for [Ahmad Alshaib’s portfolio](https://ahmadalshaib.com/), focused on web engineering, production Angular modernization, performance, testing, and maintainability.
 
 The site is a single-route Angular 22 application. Angular prerenders `/` to static HTML at build time, then hydrates it in the browser. The production deployment contains static files only—there is no runtime Node server, contact API, or Cloudflare Pages Function.
 
@@ -60,10 +60,10 @@ That file must contain the portfolio content and authoritative metadata before J
 The site never creates or ships a placeholder résumé. The supplied résumé is stored at:
 
 ```text
-public/Ahmad-Alshaib-Senior-Frontend-Engineer-Resume.pdf
+public/Ahmad-Alshaib-Web-Engineer-Resume.pdf
 ```
 
-It is served from `/Ahmad-Alshaib-Senior-Frontend-Engineer-Resume.pdf`. `public/_headers` supplies a matching `Content-Disposition` download filename.
+It is served from `/Ahmad-Alshaib-Web-Engineer-Resume.pdf`. `public/_headers` supplies a matching `Content-Disposition` download filename.
 
 ## Cloudflare Pages
 

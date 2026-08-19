@@ -73,7 +73,6 @@ export interface PortfolioContent {
   readonly resume: {
     readonly available: boolean;
     readonly path: string;
-    readonly requestHref: string;
   };
   readonly metrics: readonly PortfolioMetric[];
   readonly about: readonly string[];
@@ -91,13 +90,13 @@ export interface PortfolioContent {
 export const PORTFOLIO_CONTENT = {
   identity: {
     name: 'Ahmad Alshaib',
-    role: 'Senior Frontend Engineer · Angular Specialist',
+    role: 'Web Engineer · Angular Specialist',
     summary:
       'I build and modernize production Angular applications, improving frontend architecture, performance, testing, and maintainability across merchant and operations platforms.',
     experience: '5+ years of professional software engineering experience',
     portrait: {
       src: 'assets/images/profile.webp',
-      alt: 'Ahmad Alshaib, Senior Frontend Engineer and Angular Specialist',
+      alt: 'Ahmad Alshaib, Web Engineer and Angular Specialist',
       width: 350,
       height: 350,
     },
@@ -125,9 +124,7 @@ export const PORTFOLIO_CONTENT = {
   },
   resume: {
     available: true,
-    path: '/Ahmad-Alshaib-Senior-Frontend-Engineer-Resume.pdf',
-    requestHref:
-      'mailto:ahmad.alshaib@outlook.com?subject=R%C3%A9sum%C3%A9%20request%20%E2%80%94%20Senior%20Frontend%20Engineer',
+    path: '/Ahmad-Alshaib-Web-Engineer-Resume.pdf',
   },
   metrics: [
     {
@@ -147,14 +144,14 @@ export const PORTFOLIO_CONTENT = {
     },
   ],
   about: [
-    'I am a Senior Frontend Engineer with 5+ years of professional software engineering experience, specializing in Angular and TypeScript. I work on production merchant tools, administration platforms, and real-time operational interfaces where maintainable architecture and predictable delivery matter.',
+    'I am a Web Engineer with 5+ years of professional software engineering experience, specializing in Angular and TypeScript. I work on production merchant tools, administration platforms, and real-time operational interfaces where maintainable architecture and predictable delivery matter.',
     'My work spans modernizing legacy AngularJS systems, structuring shared frontend libraries, improving performance and testing, and refining user experience with product managers, designers, backend engineers, and frontend peers. I take features from requirements through implementation, validation, and production support.',
   ],
   experience: [
     {
       id: 'toters',
       company: 'Toters Delivery App',
-      role: 'Senior Front-End Engineer',
+      role: 'Web Engineer',
       dates: 'February 2023–Present',
       location: 'Remote from Syria · Beirut HQ',
       summary: 'Production Angular work across merchant-facing and internal operations products.',

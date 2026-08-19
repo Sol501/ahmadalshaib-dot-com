@@ -22,7 +22,7 @@ describe('App', () => {
 
     const element = fixture.nativeElement as HTMLElement;
     expect(element.querySelector('h1')?.textContent?.trim()).toBe('Ahmad Alshaib');
-    expect(element.textContent).toContain('Senior Frontend Engineer · Angular Specialist');
+    expect(element.textContent).toContain('Web Engineer · Angular Specialist');
 
     const caseStudyTitles = Array.from(
       element.querySelectorAll<HTMLHeadingElement>('app-projects-section .work h3'),

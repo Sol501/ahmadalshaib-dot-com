@@ -128,7 +128,7 @@ export const PORTFOLIO_CONTENT = {
   },
   metrics: [
     {
-      value: '40–50%',
+      value: '40-50%',
       label: 'performance improvement',
       detail: 'on production Angular application and dashboard work',
     },
@@ -152,13 +152,13 @@ export const PORTFOLIO_CONTENT = {
       id: 'toters',
       company: 'Toters Delivery App',
       role: 'Web Engineer',
-      dates: 'February 2023–Present',
+      dates: 'February 2023-Present',
       location: 'Remote from Syria · Beirut HQ',
       summary: 'Production Angular work across merchant-facing and internal operations products.',
       contributions: [
         'Contributed to modernization from legacy AngularJS applications toward modern Angular architecture and reusable shared libraries.',
         'Built merchant and administration workflows used by more than 2,000 merchants, including real-time interfaces backed by WebSockets and REST APIs.',
-        'Improved frontend performance by approximately 40–50% across relevant application and dashboard work.',
+        'Improved frontend performance by approximately 40-50% across relevant application and dashboard work.',
         'Strengthened unit testing and delivery practices, helping relevant areas reach approximately 80% coverage and reducing production regressions by roughly 90%.',
         'Contributed to paid Highlights and advertising functionality associated with approximately 5% revenue uplift.',
         'Worked with product managers and designers to take production features from requirements through delivery.',
@@ -178,7 +178,7 @@ export const PORTFOLIO_CONTENT = {
       id: 'albaraka',
       company: 'Albaraka Bank Syria',
       role: 'Software Developer',
-      dates: 'November 2021–February 2023',
+      dates: 'November 2021-February 2023',
       location: 'Damascus, Syria',
       summary:
         'Internal banking and operations software with an emphasis on traceable delivery and workflow automation.',

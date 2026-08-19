@@ -10,7 +10,7 @@ describe('HeaderComponent', () => {
     TestBed.configureTestingModule({ imports: [HeaderComponent] });
   });
 
-  it('exposes the recruiter navigation and résumé download', () => {
+  it('exposes the recruiter navigation and resume download', () => {
     const fixture = TestBed.createComponent(HeaderComponent);
     fixture.detectChanges();
     const element = fixture.nativeElement as HTMLElement;

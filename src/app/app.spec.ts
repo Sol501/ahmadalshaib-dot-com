@@ -32,7 +32,7 @@ describe('App', () => {
     expect(element.textContent).toContain('Education & Languages');
   });
 
-  it('renders direct recruiter contact and résumé targets without a form', async () => {
+  it('renders direct recruiter contact and resume targets without a form', async () => {
     const fixture = TestBed.createComponent(App);
     await TestBed.inject(Router).navigateByUrl('/');
     fixture.detectChanges();

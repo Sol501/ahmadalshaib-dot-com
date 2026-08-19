@@ -55,9 +55,9 @@ That file must contain the portfolio content and authoritative metadata before J
 - Theme, mobile-menu, and active-section behavior use signals because they are mutable UI state.
 - Contact actions are native `mailto:`, `tel:`, LinkedIn, and GitHub links. No personal message is submitted to this repository or a backend.
 
-## Résumé asset contract
+## Resume asset contract
 
-The site never creates or ships a placeholder résumé. The supplied résumé is stored at:
+The site never creates or ships a placeholder resume. The supplied resume is stored at:
 
 ```text
 public/Ahmad-Alshaib-Web-Engineer-Resume.pdf
@@ -75,7 +75,7 @@ Build output directory: dist/ahmadalshaib-dot-com/browser
 Node.js version: 24.19.0 (read from .node-version)
 ```
 
-The deployment is static. Do not configure a Functions directory or server command. `public/_headers` defines security headers, caching for generated bundles and public assets, and the résumé download header. Existing Cloudflare Web Analytics remains a Cloudflare-level integration; this repository adds no tracker.
+The deployment is static. Do not configure a Functions directory or server command. `public/_headers` defines security headers, caching for generated bundles and public assets, and the resume download header. Existing Cloudflare Web Analytics remains a Cloudflare-level integration; this repository adds no tracker.
 
 The top-level `404.html` is the not-found response for unknown paths. Do not add a blanket SPA fallback: it would turn missing URLs into soft-200 application shells.
 
@@ -91,4 +91,4 @@ Replace the existing broken `alshaib.dev → .../$1` rule; `$1` is currently bei
 ## License
 
 - **Code:** MIT; see [LICENSE](./LICENSE).
-- **Content:** Portfolio text, images, résumé, and other personal materials are not open source; see [CONTENT-LICENSE.md](./CONTENT-LICENSE.md).
+- **Content:** Portfolio text, images, resume, and other personal materials are not open source; see [CONTENT-LICENSE.md](./CONTENT-LICENSE.md).

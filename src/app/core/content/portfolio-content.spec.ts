@@ -1,7 +1,7 @@
 import { PORTFOLIO_CONTENT } from './portfolio-content';
 
 describe('PORTFOLIO_CONTENT', () => {
-  it('keeps all recruiter contact and résumé targets usable', () => {
+  it('keeps all recruiter contact and resume targets usable', () => {
     expect(PORTFOLIO_CONTENT.contact.emailHref).toBe('mailto:ahmad.alshaib@outlook.com');
     expect(PORTFOLIO_CONTENT.contact.phoneHref).toBe('tel:+971524237060');
     expect(PORTFOLIO_CONTENT.contact.phoneAvailability).toBe('Active from 12 September 2026');

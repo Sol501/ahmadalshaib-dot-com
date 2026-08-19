@@ -9,6 +9,7 @@
 html {
   min-width: 320px;
   scroll-behavior: smooth;
+  scroll-padding-top: 4.75rem;
   background: $color-bg;
   color: $color-text-primary;
   font-family:
@@ -78,7 +79,6 @@ img {
   width: min($page-max-width, calc(100% - 2.5rem));
   margin: 0 auto;
   padding: clamp(4.5rem, 9vw, 7.5rem) 0;
-  scroll-margin-top: 4.75rem;
 }
 
 .button {

@@ -51,4 +51,22 @@ describe('App', () => {
     ).not.toBeNull();
     expect(element.querySelector('form')).toBeNull();
   });
+
+  it('targets a non-sticky page-top marker from the footer', async () => {
+    const fixture = TestBed.createComponent(App);
+    await TestBed.inject(Router).navigateByUrl('/');
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    const element = fixture.nativeElement as HTMLElement;
+    const topMarker = element.querySelector<HTMLElement>('#top');
+    const backToTopLink = Array.from(element.querySelectorAll<HTMLAnchorElement>('a')).find(
+      (link) => link.textContent?.includes('Back to top'),
+    );
+
+    expect(topMarker?.classList.contains('top-anchor')).toBe(true);
+    expect(element.querySelector('app-header')?.hasAttribute('id')).toBe(false);
+    expect(backToTopLink?.getAttribute('href')).toBe('#top');
+  });
 });

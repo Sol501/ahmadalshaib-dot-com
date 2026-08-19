@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { HeaderComponent } from './header.component';
+import { HeaderComponent, resolveActiveSection } from './header.component';
 
 describe('HeaderComponent', () => {
   beforeEach(() => {
@@ -58,6 +58,62 @@ describe('HeaderComponent', () => {
       '.site-header__nav-link[aria-current="location"]',
     );
     expect(activeLink?.getAttribute('href')).toBe('#work');
+  });
+
+  it('marks a selected navigation target immediately', () => {
+    const fixture = TestBed.createComponent(HeaderComponent);
+    fixture.detectChanges();
+    const element = fixture.nativeElement as HTMLElement;
+
+    element.querySelector<HTMLAnchorElement>('a[href="#experience"]')?.click();
+    fixture.detectChanges();
+
+    expect(
+      element.querySelector<HTMLAnchorElement>('.site-header__nav-link[aria-current="location"]')
+        ?.textContent,
+    ).toContain('Experience');
+  });
+
+  it('resolves the active section consistently in either scroll direction', () => {
+    expect(
+      resolveActiveSection(
+        [
+          { targetId: 'about', top: -700 },
+          { targetId: 'experience', top: 72 },
+          { targetId: 'work', top: 1400 },
+        ],
+        80,
+        false,
+      ),
+    ).toBe('experience');
+
+    expect(
+      resolveActiveSection(
+        [
+          { targetId: 'about', top: -1500 },
+          { targetId: 'experience', top: -600 },
+          { targetId: 'work', top: 120 },
+        ],
+        80,
+        false,
+      ),
+    ).toBe('experience');
+  });
+
+  it('marks Contact at the bottom of the document', () => {
+    expect(
+      resolveActiveSection(
+        [
+          { targetId: 'about', top: -6000 },
+          { targetId: 'experience', top: -5000 },
+          { targetId: 'work', top: -3000 },
+          { targetId: 'skills', top: -1200 },
+          { targetId: 'contact', top: 180 },
+        ],
+        80,
+        true,
+      ),
+    ).toBe('contact');
   });
 
   it('persists a theme change and updates the document color scheme', () => {

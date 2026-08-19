@@ -16,7 +16,7 @@
           class="site-header__nav-link"
           [attr.href]="'#' + link.targetId"
           [attr.aria-current]="activeSection() === link.targetId ? 'location' : null"
-          (click)="closeMenu()"
+          (click)="selectSection(link.targetId, $event)"
         >
           {{ link.label }}
         </a>

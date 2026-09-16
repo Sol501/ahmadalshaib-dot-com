@@ -23,6 +23,8 @@ describe('App', () => {
     const element = fixture.nativeElement as HTMLElement;
     expect(element.querySelector('h1')?.textContent?.trim()).toBe('Ahmad Alshaib');
     expect(element.textContent).toContain('Web Engineer · Angular Specialist');
+    expect(element.textContent).toContain('Based in Dubai, UAE · Available for opportunities.');
+    expect(element.textContent).not.toMatch(/relocat|from 12 September 2026/i);
 
     const caseStudyTitles = Array.from(
       element.querySelectorAll<HTMLHeadingElement>('app-projects-section .work h3'),

@@ -102,16 +102,16 @@ export const PORTFOLIO_CONTENT = {
     },
   },
   availability: {
-    status: 'In Dubai, UAE from 12 September 2026 · Available for opportunities.',
+    status: 'Based in Dubai, UAE · Available for opportunities.',
     recruiterMessage:
-      'I am interviewing now for senior frontend and Angular roles in Dubai, Abu Dhabi, and across the UAE.',
+      'I am based in Dubai and interviewing now for senior frontend and Angular roles across the UAE.',
   },
   contact: {
     email: 'ahmad.alshaib@outlook.com',
     emailHref: 'mailto:ahmad.alshaib@outlook.com',
     phone: '+971 52 423 7060',
     phoneHref: 'tel:+971524237060',
-    phoneAvailability: 'Active from 12 September 2026',
+    phoneAvailability: 'UAE number',
     website: 'ahmadalshaib.com',
     linkedin: {
       label: 'LinkedIn',
@@ -153,7 +153,7 @@ export const PORTFOLIO_CONTENT = {
       company: 'Toters Delivery App',
       role: 'Web Engineer',
       dates: 'February 2023-Present',
-      location: 'Remote from Syria · Beirut HQ',
+      location: 'Remote from Dubai, UAE · Beirut HQ',
       summary: 'Production Angular work across merchant-facing and internal operations products.',
       contributions: [
         'Contributed to modernization from legacy AngularJS applications toward modern Angular architecture and reusable shared libraries.',

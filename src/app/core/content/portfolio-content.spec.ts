@@ -4,13 +4,25 @@ describe('PORTFOLIO_CONTENT', () => {
   it('keeps all recruiter contact and resume targets usable', () => {
     expect(PORTFOLIO_CONTENT.contact.emailHref).toBe('mailto:ahmad.alshaib@outlook.com');
     expect(PORTFOLIO_CONTENT.contact.phoneHref).toBe('tel:+971524237060');
-    expect(PORTFOLIO_CONTENT.contact.phoneAvailability).toBe('Active from 12 September 2026');
+    expect(PORTFOLIO_CONTENT.contact.phoneAvailability).toBe('UAE number');
     expect(PORTFOLIO_CONTENT.contact.linkedin.url).toMatch(/^https:\/\//);
     expect(PORTFOLIO_CONTENT.contact.github.url).toMatch(/^https:\/\//);
     expect(PORTFOLIO_CONTENT.resume).toMatchObject({
       available: true,
       path: '/Ahmad-Alshaib-Web-Engineer-Resume.pdf',
     });
+  });
+
+  it('uses current Dubai location copy without future-relocation language', () => {
+    expect(PORTFOLIO_CONTENT.availability).toEqual({
+      status: 'Based in Dubai, UAE · Available for opportunities.',
+      recruiterMessage:
+        'I am based in Dubai and interviewing now for senior frontend and Angular roles across the UAE.',
+    });
+    expect(PORTFOLIO_CONTENT.experience.find(({ id }) => id === 'toters')?.location).toBe(
+      'Remote from Dubai, UAE · Beirut HQ',
+    );
+    expect(JSON.stringify(PORTFOLIO_CONTENT)).not.toMatch(/relocat|from 12 September 2026/i);
   });
 
   it('contains the three approved, conservatively framed case studies', () => {
